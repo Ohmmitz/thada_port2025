@@ -1,0 +1,465 @@
+@font-face {
+  font-family: "FCVision";
+  src: url("Assets/fonts/FCVision-Bold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "FCVision-2";
+  src: url("Assets/fonts/FCVision-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "FCVision-3";
+  src: url("Assets/fonts/FCVision-Medium.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+* {
+  top: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+
+body {
+  font-family: "FCVision";
+  background: #3939FF;
+  color: #3939FF;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+
+/* Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-wrapper {
+  flex: 1;
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  display: flex;
+  margin-inline: auto;
+  align-items: auto;
+  width: 84%;
+  justify-content: center;
+  padding: 4px;
+  align-items: center;
+  background: #3939FF;
+  border: 1px solid #F8F3EC;
+  position: sticky;
+  top: 20px;
+  z-index: 1000;
+  text-decoration: none;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 1.2vw;
+}
+
+nav a {
+  width: 10.8vw;
+  height: auto;
+  text-align: center;  
+  line-height: 40px; 
+  text-decoration: none;
+  color: #F8F3EC;
+  font-weight: 500;
+  transition: background 0.3s, color 0.3s;
+}
+
+nav a:hover {
+  background: #F8F3EC;
+  color: #3939FF;
+}
+
+/* Hamburger menu hidden on desktop */
+.hamburger {
+  color: #F8F3EC;
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  user-select: none;
+}
+
+#banner {
+  position: relative;
+  top: 0;
+  background: #3939FF;
+  color: #F8F3EC;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  padding: 5rem 1rem;
+}
+
+#banner h1 {
+  font-family: "FCVision-2";
+  font-size: 15vw;
+  line-height: 88px;
+}
+
+#banner p {
+  font-size: 2.75vw;
+  margin-bottom: 1rem;
+}
+
+#banner .image{
+    width: 84%;
+    height: 320px;
+    margin-top: 16vh;
+    margin-left: auto;
+    margin-right: auto;
+    object-fit: cover;
+}
+
+section{
+  padding-inline: 8vw;
+}
+
+#about ,#experience ,#skills, #projects{
+  background-color: #F8F3EC;
+  padding-top: 12%;
+  padding-bottom: 12%;
+  
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.two-column img {
+  margin-left: 20%;
+  width: 60%;
+}
+
+.two-column h1 {
+  font-family: "FCVision-2";
+  margin-bottom: 1rem;
+  font-size: 4rem;
+  line-height: 60px;
+  color: #3939FF;
+}
+
+.two-column h3 {
+  width: fit-content;
+  font-family: "FCVision-2";
+  background-color: #3939FF;
+  margin-bottom: 1rem;
+  font-size: 2.4rem;
+  padding-inline: 1rem;
+  color: #F8F3EC;
+}
+
+.two-column p {
+  font-family: "FCVision-3";
+  font-size: 1.2rem;
+  color: #514A49;
+}
+
+#experience li{
+  list-style: none;
+  font-family: "FCVision-2";
+  margin-bottom: 1rem;
+  font-size: 2.4rem;
+}
+
+.three-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4rem;
+  align-items: baseline;
+}
+
+.skills h1 {
+  font-family: "FCVision-2";
+  margin-bottom: 4rem;
+  font-size: 4rem;
+  line-height: 60px;
+  color: #3939FF;
+}
+
+.three-column h3 {
+  font-family: "FCVision-2";
+  background-color: #3939FF;
+  margin-bottom: 1rem;
+  font-size: 2.4rem;
+  padding-inline: 1rem;
+  color: #F8F3EC;
+}
+
+.three-column li {
+  margin-bottom: 0.6rem;
+  font-family: "FCVision-3";
+  font-size: 1.6rem;
+  border-bottom: 1px solid #3939FF;
+  list-style: none;
+  color: #3939FF;
+}
+
+.three-column li:hover {
+  border-bottom: 1px solid #3939FF;
+  cursor: pointer;
+  background-color: #3939FF;
+  color: #F8F3EC;
+}
+
+/* Skills */
+.skills {
+  margin-bottom: 4rem;
+}
+
+.skills h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #3939FF;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skill-item {
+  background: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+#projects{
+  margin-top: 0;
+  text-decoration: none;
+}
+
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#projects h1 {
+  font-family: "FCVision-2";
+  font-size: 4rem;
+  color: #3939FF;
+}
+
+.project-filter select {
+  padding: 0.8rem 1rem;
+  border: 1px solid #3939FF;
+  border-style: none;
+  border-radius: 0;
+  background: #fff;
+  font-size: 0.9rem;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  text-decoration: none;
+}
+
+.project-card {
+  background: transparent;
+  border: 1px solid #3939FF;
+  overflow: hidden;
+  box-shadow: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 8px #3939FF(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  text-decoration: none;
+}
+
+.project-card h3 {
+  font-family: "FCVision-2";
+  text-decoration: none;
+  padding: 1rem;
+  font-size: 1.8rem;
+  color: #3939FF;
+  
+}
+
+.project-card p {
+  font-family: "FCVision-3";
+  text-decoration: none;
+  padding: 0 1rem 1rem;
+  font-size: 0.95rem;
+  color: #514A49;
+}
+
+/* Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content h2 {
+  margin-bottom: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.9rem;
+  background: #3939FF;
+  color: #F8F3EC;
+  margin-top: auto;
+}
+
+.footer h1 {
+  margin-inline: auto;
+  width: fit-content;
+  font-size: 2rem;
+  border: 1px solid #F8F3EC;
+  padding: 16px;
+  margin-bottom: 1rem;
+}
+
+.footer h2 {
+  margin-bottom: 1rem;
+  margin-inline: auto;
+  font-size: 1.6rem;
+}
+
+.footer .flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer .btn{
+  text-decoration: none;
+  color: #F8F3EC;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #F8F3EC;
+  font-size: 32px;
+  padding: 0.4rem 0.8rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.footer .btn:hover{
+  background-color: #F8F3EC;
+  color: #3939FF;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  section{
+    padding-inline: 4vw;
+  }
+
+  .two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .three-column {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    display: none; /* Hide menu by default */
+    position: absolute;
+    top: 60px;
+    background: #3939FF;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #F8F3EC;
+    color: #F8F3EC;
+    padding-inline: 4vw;
+  }
+
+  nav.active {
+    display: flex; /* Show menu when active */
+  }
+
+  .hamburger {
+    display: block; /* Show hamburger on mobile */
+  }
+
+  nav a {
+    width: 100%;
+    padding: 12px;
+    text-align: left;
+  }
+
+  #banner p {
+    font-size: 2.75vw;
+    margin-bottom: -1rem;
+  }
+
+  #banner .image{
+    width: 84%;
+    height: 400px;
+    margin-top: 3vh;
+  }
+
+  .footer h1 {
+    font-size: 1.5rem;
+  } 
+}
