@@ -170,7 +170,7 @@ section{
     font-family: "FCVision-2";
     font-size: 2rem;
     padding-inline: 0.4rem;
-    letter-spacing: -3%;
+    letter-spacing: -1%;
     background-color: #F8F3EC;
     color: #3939FF;
 }
@@ -201,7 +201,7 @@ section{
 .text p{
     font-family:"FCVision-3" ;
     font-size: 1.2rem;
-    letter-spacing: -2%;
+    letter-spacing: -1%;
 
 }
 
