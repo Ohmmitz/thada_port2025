@@ -26,6 +26,7 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 
@@ -157,7 +158,7 @@ section{
 .two-column h1 {
   font-family: "FCVision-2";
   margin-bottom: 1rem;
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 60px;
   color: #3939FF;
 }
@@ -194,7 +195,7 @@ section{
 
 .skills h1 {
   font-family: "FCVision-2";
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   font-size: 4rem;
   line-height: 60px;
   color: #3939FF;
@@ -264,7 +265,7 @@ section{
 
 #projects h1 {
   font-family: "FCVision-2";
-  font-size: 4rem;
+  font-size: 3rem;
   color: #3939FF;
 }
 
@@ -348,6 +349,24 @@ section{
   margin-bottom: 1rem;
 }
 
+.btn-link {
+  text-align: center;
+  width: 100%;
+  padding: 0.4rem;
+  background-color: transparent;
+  border: 1px solid #3939FF;
+  color: #3939FF;
+  text-decoration: none; /* remove underline */
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-link:hover {
+  background-color: #3939FF;
+  color: #F8F3EC;
+}
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -410,7 +429,7 @@ section{
 /* Responsive */
 @media (max-width: 768px) {
   section{
-    padding-inline: 4vw;
+    padding-inline: 8vw;
   }
 
   .two-column {

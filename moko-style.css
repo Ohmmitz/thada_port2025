@@ -33,6 +33,7 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 
@@ -176,7 +177,7 @@ section{
 
 .text h1{
     font-family: "FCVision-2";
-    font-size: 4rem;
+    font-size: 3rem;
     line-height: 60px;
     letter-spacing: -1%;
 }
@@ -193,14 +194,14 @@ section{
     font-size: 14px;
     border: 1px solid #F8F3EC;
     padding: 4px 8px;
-    letter-spacing: -4%;
+    letter-spacing: -2%;
     width: fit-content;
 }
 
 .text p{
     font-family:"FCVision-3" ;
     font-size: 1.2rem;
-    letter-spacing: -4%;
+    letter-spacing: -2%;
 
 }
 
@@ -337,7 +338,7 @@ section{
 
 .projects h1 {
   font-family: "FCVision-2";
-  font-size: 5rem;
+  font-size: 3rem;
   color: #3939FF;
 }
 
@@ -421,7 +422,7 @@ section{
 .footer h1 {
   margin-inline: auto;
   width: fit-content;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border: 1px solid #F8F3EC;
   padding: 16px;
   margin-bottom: 1rem;
