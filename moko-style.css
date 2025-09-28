@@ -42,7 +42,7 @@ body {
   font-family: "FCVision";
   background: #3939FF;
   color: #3939FF;
-  line-height: 1.6;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
@@ -66,14 +66,15 @@ header {
 nav {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 1.2vw;
+  width: 100%;
 }
 
 nav a {
-  width: 10.8vw;
+  width: 100%;
   height: auto;
+  padding: 8px;
   text-align: center;  
-  line-height: 40px; 
+  font-size: 18px; 
   text-decoration: none;
   color: #F8F3EC;
   font-weight: 500;
@@ -85,11 +86,10 @@ nav a:hover {
   color: #3939FF;
 }
 
-/* Hamburger menu hidden on desktop */
 .hamburger {
   color: #F8F3EC;
   display: none;
-  font-size: 28px;
+  font-size: 18px;
   cursor: pointer;
   user-select: none;
 }
@@ -101,8 +101,8 @@ section{
 #banner{
     position: relative;
     top: 0;
-    padding-top: 6rem;
-    margin-bottom: 4rem;
+    padding-top: 3rem;
+    margin-bottom: 3rem;
     background: #3939FF;
     color: #F8F3EC;
     width: 100%;
@@ -163,12 +163,11 @@ section{
     gap: 10px;
 }
 
-
 .text h3{
     width: fit-content;
     font-family: "FCVision-2";
-    font-size: 2rem;
-    padding-inline: 0.4rem;
+    font-size: 32px;
+    padding-inline: 8px;
     letter-spacing: -1%;
     background-color: #F8F3EC;
     color: #3939FF;
@@ -176,14 +175,13 @@ section{
 
 .text h1{
     font-family: "FCVision-2";
-    font-size: 3rem;
-    line-height: 60px;
+    font-size: 48px;
     letter-spacing: -1%;
 }
 
 .text h4{
     font-family: "FCVision-2";
-    font-size: 1.6rem;
+    font-size: 24px;
     line-height: 60px;
     letter-spacing: -1%;
 }
@@ -192,21 +190,23 @@ section{
     font-family:"FCVision-3" ;
     font-size: 14px;
     border: 1px solid #F8F3EC;
-    padding: 4px 8px;
+    padding: 8px 16px;
     letter-spacing: -2%;
     width: fit-content;
 }
 
 .text p{
     font-family:"FCVision-3" ;
-    font-size: 1.2rem;
+    font-size: 16px;
     letter-spacing: -1%;
 
 }
 
 .tag{
     display: flex;
-    margin-top: 1.25rem;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 1rem;
     gap: 1rem;
 }
 
@@ -323,7 +323,7 @@ section{
     padding-bottom: 8%;
     background-color: #F8F3EC;
 }
-/* Projects */
+
 .projects-section {
   margin-bottom: 4rem;
 }
@@ -335,7 +335,7 @@ section{
   margin-bottom: 1.5rem;
 }
 
-.projects h1 {
+#projects h1 {
   font-family: "FCVision-2";
   font-size: 3rem;
   color: #3939FF;
@@ -364,6 +364,7 @@ section{
   box-shadow: 0;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .project-card:hover {
@@ -421,7 +422,7 @@ section{
 .footer h1 {
   margin-inline: auto;
   width: fit-content;
-  font-size: 1.5rem;
+  font-size: 24px;
   border: 1px solid #F8F3EC;
   padding: 16px;
   margin-bottom: 1rem;
@@ -430,7 +431,7 @@ section{
 .footer h2 {
   margin-bottom: 1rem;
   margin-inline: auto;
-  font-size: 1.6rem;
+  font-size: 16px;
 }
 
 .flex{
@@ -441,6 +442,7 @@ section{
 
 .footer .flex{
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 1rem;
@@ -472,11 +474,62 @@ section{
   text-decoration: none; /* remove underline */
   font-weight: bold;
   transition: background-color 0.3s ease;
+  font-size: 16px;
 }
 
 .btn-link:hover {
   background-color: #F8F3EC;
   color: #3939FF;
+}
+
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;        
+}
+
+.marquee span {
+  display: inline-block;
+  padding-right: 1rem;
+  margin-top: 16px; 
+  margin-bottom: 16px;       
+  animation: marquee 16s linear infinite;
+  font-weight: bold;
+  font-size: 24px;           
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+.line{
+  width: 100%;
+  height: 1px;
+  background-color: #3939FF;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+#banner .line{
+  width: 100%;
+  height: 1px;
+  background-color: #F8F3EC;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.box-100{
+    width: 100%;
+    height: 16px;
+    margin-top: 24px;
+    background-color: #3939FF;
+}
+
+.box-50{
+    width: 100%;
+    height: 8px;
+    background-color: #3939FF;
 }
 
 /* Responsive */
@@ -490,6 +543,7 @@ section{
   }
   .four-column-image{
     grid-template-columns: 1fr;
+    width: 100%;
    
   }
   .three-column {
@@ -510,7 +564,6 @@ section{
     padding: 10px;
     border: 1px solid #F8F3EC;
     color: #F8F3EC;
-    padding-inline: 4vw;
   }
 
   nav.active {
@@ -527,14 +580,8 @@ section{
     text-align: left;
   }
 
-  .text h5{
-    font-size: 10px;
-    padding: 4px;
-    letter-spacing: -4%;
-    }
-
   #banner p {
-    font-size: 2.75vw;
+    font-size: 24px;
     margin-bottom: -1rem;
   }
 
@@ -545,6 +592,6 @@ section{
   }
 
   .footer h1 {
-    font-size: 1.5rem;
+    font-size: 16px;
   } 
 }

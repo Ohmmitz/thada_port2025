@@ -33,23 +33,8 @@ body {
   font-family: "FCVision";
   background: #3939FF;
   color: #3939FF;
-  line-height: 1.6;
+  line-height: 1.4;
   text-transform: uppercase;
-}
-
-
-/* Layout */
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.main-wrapper {
-  flex: 1;
-  padding: 2rem 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
 /* Header */
@@ -72,14 +57,15 @@ header {
 nav {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap: 1.2vw;
+  width: 100%;
 }
 
 nav a {
-  width: 10.8vw;
+  width: 100%;
   height: auto;
+  padding: 8px;
   text-align: center;  
-  line-height: 40px; 
+  font-size: 18px;
   text-decoration: none;
   color: #F8F3EC;
   font-weight: 500;
@@ -95,9 +81,13 @@ nav a:hover {
 .hamburger {
   color: #F8F3EC;
   display: none;
-  font-size: 28px;
+  font-size: 24px;
   cursor: pointer;
   user-select: none;
+}
+
+section{
+  padding-inline: 8vw;
 }
 
 #banner {
@@ -106,39 +96,46 @@ nav a:hover {
   background: #3939FF;
   color: #F8F3EC;
   width: 100%;
-  height: 100vh;
   text-align: center;
-  padding: 5rem 1rem;
+  padding: 2rem 1rem;
+  gap: 0;
 }
 
-#banner h1 {
-  font-family: "FCVision-2";
-  font-size: 15vw;
-  line-height: 88px;
-}
-
-#banner p {
-  font-size: 2.75vw;
+#banner .flex{
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 8vw;
   margin-bottom: 1rem;
 }
 
-#banner .image{
-    width: 84%;
-    height: 320px;
-    margin-top: 16vh;
-    margin-left: auto;
-    margin-right: auto;
+#banner .portfolio {
+  width: 84%;
+  height: auto;
+  margin-inline: 8vw;
     object-fit: cover;
 }
 
-section{
-  padding-inline: 8vw;
+#banner h6 {
+  font-size: 40px;
+}
+
+#banner p {
+  margin-inline: 8vw;      
+  font-size: 32px;
+}
+
+#banner .image{
+  width: 84%;
+  height: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
 }
 
 #about ,#experience ,#skills, #projects{
   background-color: #F8F3EC;
-  padding-top: 12%;
-  padding-bottom: 12%;
+  padding-top: 8%;
+  padding-bottom: 8%;
   
 }
 
@@ -156,9 +153,8 @@ section{
 
 .two-column h1 {
   font-family: "FCVision-2";
-  margin-bottom: 1rem;
-  font-size: 3rem;
-  line-height: 60px;
+  margin-bottom: 8px;
+  font-size: 48px;
   color: #3939FF;
 }
 
@@ -166,15 +162,15 @@ section{
   width: fit-content;
   font-family: "FCVision-2";
   background-color: #3939FF;
-  margin-bottom: 1rem;
-  font-size: 2.4rem;
-  padding-inline: 1rem;
+  margin-bottom: 8px;
+  font-size: 32px;
+  padding-inline: 8px;
   color: #F8F3EC;
 }
 
 .two-column p {
   font-family: "FCVision-3";
-  font-size: 1.2rem;
+  font-size: 18px;
   color: #514A49;
 }
 
@@ -194,25 +190,24 @@ section{
 
 .skills h1 {
   font-family: "FCVision-2";
-  margin-bottom: 3rem;
-  font-size: 4rem;
-  line-height: 60px;
+  margin-bottom: 24px;
+  font-size: 48px;
   color: #3939FF;
 }
 
 .three-column h3 {
   font-family: "FCVision-2";
   background-color: #3939FF;
-  margin-bottom: 1rem;
-  font-size: 2.4rem;
-  padding-inline: 1rem;
+  margin-bottom: 8px;
+  font-size: 32px;
+  padding-inline: 8px;
   color: #F8F3EC;
 }
 
 .three-column li {
-  margin-bottom: 0.6rem;
+  margin-bottom: 8px;
   font-family: "FCVision-3";
-  font-size: 1.6rem;
+  font-size: 24px;
   border-bottom: 1px solid #3939FF;
   list-style: none;
   color: #3939FF;
@@ -225,30 +220,10 @@ section{
   color: #F8F3EC;
 }
 
-/* Skills */
-.skills {
-  margin-bottom: 4rem;
-}
-
-.skills h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: #3939FF;
-}
-
 .skills-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-}
-
-.skill-item {
-  background: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  border: 1px solid #ddd;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
 }
 
 #projects{
@@ -264,7 +239,7 @@ section{
 
 #projects h1 {
   font-family: "FCVision-2";
-  font-size: 3rem;
+  font-size: 48px;
   color: #3939FF;
 }
 
@@ -335,19 +310,6 @@ section{
   z-index: 2000;
 }
 
-.modal-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 600px;
-  width: 90%;
-  animation: fadeIn 0.3s ease;
-}
-
-.modal-content h2 {
-  margin-bottom: 1rem;
-}
-
 .btn-link {
   text-align: center;
   width: 100%;
@@ -365,16 +327,12 @@ section{
   color: #F8F3EC;
 }
 
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.line{
+  width: 100%;
+  height: 1px;
+  background-color: #3939FF;
+  margin-top: 16px;
+  margin-bottom: 16px;
 }
 
 /* Footer */
@@ -390,7 +348,7 @@ section{
 .footer h1 {
   margin-inline: auto;
   width: fit-content;
-  font-size: 2rem;
+  font-size: 24px;
   border: 1px solid #F8F3EC;
   padding: 16px;
   margin-bottom: 1rem;
@@ -425,6 +383,27 @@ section{
   color: #3939FF;
 }
 
+.marquee {
+  overflow: hidden;
+  white-space: nowrap;
+  box-sizing: border-box;       
+}
+
+.marquee span {
+  display: inline-block;
+  padding-right: 1rem; 
+  margin-top: 8px; 
+  margin-bottom: 8px;     
+  animation: marquee 16s linear infinite;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   section{
@@ -449,7 +428,7 @@ section{
     padding: 10px;
     border: 1px solid #F8F3EC;
     color: #F8F3EC;
-    padding-inline: 4vw;
+    
   }
 
   nav.active {
@@ -466,18 +445,17 @@ section{
     text-align: left;
   }
 
-  #banner p {
-    font-size: 2.75vw;
-    margin-bottom: -1rem;
+  #banner h6 {
+  font-size: 24px;
   }
 
   #banner .image{
     width: 84%;
     height: 400px;
-    margin-top: 3vh;
+    margin-top: 0;
   }
 
   .footer h1 {
-    font-size: 1.5rem;
+    font-size: 16px;
   } 
 }
