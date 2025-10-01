@@ -35,7 +35,6 @@ body {
   color: #3939FF;
   line-height: 1.4;
   text-transform: uppercase;
-  overflow-y: hidden;
 }
 
 section{
@@ -88,35 +87,6 @@ header a:hover{
   gap: 16px;
 }
 
-.two-column{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-#overlay{
-  display:none; 
-  position:fixed; 
-  inset:0;
-  background:rgba(0,0,0,0.8);
-  justify-content:center; align-items:center;
-  z-index:1000;
-}
-
-#overlay img{
-  width: 70%;
-  height: auto;
-  border-radius: 0;
-  object-fit: contain;
-  background-color: #F8F3EC;
-}
-
-#fullImage{
-  max-width: 90%; 
-  max-height: 90%;
-  border-radius: 0;
-}
-
 .tag{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -126,16 +96,18 @@ header a:hover{
 .colour{
   width: 60px;
   height: 60px;
+  border-radius: 8px;
 }
 
 .text{
     width: 100%;
-    height: 188px;
-    border-radius: 2px;
+    height: 180px;
+    border-radius: 8px;
 }
 
 #userxuseri.text{
     width: 100%;
+    border-radius: 8px;
 }
 
 h1{
@@ -153,15 +125,15 @@ h3{
     padding: 4px;
     background-color: #3939FF;
     width: fit-content;
-    font-size: 20px;
+    font-size: 16px;
     color: #F8F3EC;
-    margin-bottom: 4px;
+    border-radius: 4px;
 }
 
 h4{
     font-family: "FCVision-2";
     letter-spacing: -2%;
-    font-size: 3.6vw;
+    font-size: 4vw;
     padding: 8px 0;
     line-height: 40px;
 }
@@ -172,6 +144,7 @@ h5{
     padding: 4px;
     color: #F8F3EC;
     background-color: #3939FF;
+    border-radius: 4px;
 }
 
 h6{
@@ -185,7 +158,6 @@ p{
     font-family: "FCVision-3";
     font-size: 16px;
     letter-spacing: -0.8%;
-    color: #2F2B2A;
 }
 
 .text p{
@@ -207,13 +179,8 @@ p{
     font-weight: bold;
   }
 
-li{
+.text li{
     list-style: none;
-    font-family: "FCVision-3";
-    font-size: 14px;
-    color: #2F2B2A;
-    margin-bottom: 4px;
-    border-bottom: 1px solid #3939FF;
 }
 
 .text li a{
@@ -223,7 +190,7 @@ li{
     color: #3939FF;
 }
 
-.text li a:hover , .text li:hover{
+.text li a:hover{
   width: 100%;
   height: auto;
     background-color: #3939FF;
@@ -232,21 +199,22 @@ li{
 
 .image{
     width: 100%;
-    height: 188px;
+    height: 180px;
 }
 
 img{
     width: 100%;
-    height: 188px;
+    height: 180px;
     object-fit: cover;
+    border-radius: 8px;
     transition: 0.3s ease-in-out;
-    border-radius: 2px;
 }
 
 .image-s{
     width: 100%;
     height: 148px;
     object-fit: cover;
+    border-radius: 8px;
     transition: 0.3s ease-in-out;
 }
 
@@ -254,23 +222,13 @@ img{
     width: 100%;
     height: auto;
     object-fit: cover;
+    border-radius: 8px;
     transition: 0.3s ease-in-out;
 }
 
+
 .image img:hover,.image-s:hover{
   scale: 1.08;
-  cursor: pointer;
-}
-
-.two-column img{
-  width: 100%;
-  height: 80%;
-  object-position: 5px 10px;
-  transition: 0.3s ease-in-out;
-}
-
-.two-column img:hover{
-  scale: 1.04;
 }
 
 .marquee {
@@ -295,13 +253,6 @@ img{
   100% { transform: translateX(-100%); }
 }
 
-.line{
-  margin-top: 2px;
-  width: 100%;
-  height: 1px;
-  background-color: #3939FF;
-}
-
 .flex{
     display: flex;
     flex-wrap: wrap;
@@ -312,13 +263,6 @@ img{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 8px;
-  align-items: auto; 
-}
-
-.space a{
-  text-decoration: none;
-  color: #2F2B2A;
 }
 
 .text a{
@@ -329,12 +273,32 @@ img{
 .text a:hover{
   text-decoration: none;
   color: #3939FF;
-  cursor: pointer;
 }
 
 .box-h1{
     width: 100%;
-    height: 140px;
+    height: 20px;
+    margin: 2px 0;
+    background-color: #3939FF;
+}
+
+.box-h2{
+    width: 100%;
+    height: 16px;
+    margin: 2px 0;
+    background-color: #3939FF;
+}
+
+.box-h3{
+    width: 100%;
+    height: 12px;
+    margin: 2px 0;
+    background-color: #3939FF;
+}
+
+.box-h4{
+    width: 100%;
+    height: 8px;
     margin: 2px 0;
     background-color: #3939FF;
 }
@@ -360,17 +324,12 @@ img{
   font-weight: bold;
   transition: background-color 0.3s ease;
   font-size: 16px;
-  border-radius: 2px;
-}
-
-.btn-link {
-  color: #F8F3EC;
+  border-radius: 8px;
 }
 
 .btn-link:hover {
   background-color: #3939FF;
   color: #F8F3EC;
-  cursor: pointer;
 }
 
 footer {
@@ -393,13 +352,6 @@ footer {
   transition: color 3s;
 }
 
-footer p{
-    font-family: "FCVision-3";
-    font-size: 16px;
-    letter-spacing: -0.8%;
-    color: #2F2B2A;
-}
-
 footer a {
   color: #2F2B2A;
   text-decoration: none;
@@ -410,18 +362,44 @@ footer a {
 
 footer a:hover , footer p:hover{
     color: #3939FF;
-    cursor: pointer;
 }
 
 @media (max-width: 1024px){
-  body{
-    overflow-y: scroll;
-  }
     .four-column {
     grid-template-columns: 1fr 1fr 1fr;
     flex-wrap: wrap;
     }
 
+    nav {
+    display: none; 
+    position: absolute;
+    top: 40px;
+    background: #F8F3EC;
+    flex-direction: column;
+    width: 84%;
+    padding: 8px;
+    border: 1px solid #3939FF;
+    color: #F8F3EC;
+  }
+
+  nav.active {
+    display: flex; 
+  }
+
+  .hamburger {
+    display: block; 
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .hamburger:hover {
+    color: #3939FF;
+  }
+
+  nav a {
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+  }
 
   .text h4{
         font-size: 6vw;
@@ -429,7 +407,7 @@ footer a:hover , footer p:hover{
         line-height: 60px;
     }
 
-    footer , footer p {
+    footer {
       font-size: 12px;
       bottom: 0;
     }
@@ -454,11 +432,6 @@ footer a:hover , footer p:hover{
     flex-wrap: wrap;
   }
 
-  .two-column {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
   .text h4{
         font-size: 52px;
         padding: 0;
@@ -476,14 +449,10 @@ footer a:hover , footer p:hover{
       display: none;
     }
 
-    footer{
+    footer {
       padding: 4vw;
       font-size: 8px;
       justify-content: center;
       bottom: 0;
-    }
-
-    footer p{
-      font-size: 8px;
     }
 }
