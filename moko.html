@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>portfolio</title>
-    <link rel="stylesheet" href="moko-style.css">
+    <title>Moko | Thada phumphung</title>
+    <link rel="shortcut icon" href="Assets/profile.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"/>
 </head>
 <body>
+    <div class="pointer" aria-hidden="true"></div>
     <header>
         <a href="index.html"><i class="ph-bold ph-arrow-left"></i>home</a>
         <a href="index.html">thada phumphung</a>
@@ -54,14 +56,12 @@
                 <img src="Assets/Moko/moko_bann2.jpg" class="lightbox-img">
             </div>
             <div class="text">
-                <h2>ดูเพิ่มเติม</h2>
-                <ul>
-                    <li>problem/solution/result</li>
-                    <li>user flow</li>
-                    <li>wireframe</li>
-                    <li>prototype</li>
-                    <li>design systems</li>
-                </ul>
+                <div class="four-column">
+                    <img src="Assets/icon/website.svg" class="icon">
+                    <img src="Assets/icon/figma.svg" class="icon">
+                    <img src="Assets/icon/skin.svg" class="icon">
+                    <img src="Assets/icon/carecream.svg" class="icon">
+                </div>
             </div>
             <div class="text">
                 <div class="flex">
@@ -71,7 +71,9 @@
                 <br>
                 <br>
                 <div class="space">
-                    <a href="#problem-solution">problem/solution<i class="ph-bold ph-arrow-down"></i></a>
+                    <div class="line" style="background-color: #2F2B2A; margin-bottom:8px;"></div>
+                    <a href="#problem-solution">move to problem/solution<i class="ph-bold ph-arrow-down"></i></a>
+                    <div class="line" style="background-color: #2F2B2A; margin-top:8px;"></div>
                </div>
             </div>
         </div>
@@ -80,8 +82,9 @@
         <div class="four-column">
             <div class="text">
                 <div class="space">
-                    <a href="#banner"><i class="ph-bold ph-arrow-up"></i>banner</a>
-                    <p>problem/solution<p>
+                    <div class="line" style="background-color: #2F2B2A; margin-bottom:8px;"></div>
+                    <a href="#banner"><i class="ph-bold ph-arrow-up"></i>back to banner</a>
+                    <div class="line" style="background-color: #2F2B2A; margin-top:8px;"></div>
                 </div>
                 <img src="Assets/Moko/moko-01.jpeg" class="image-s">
             </div>
@@ -126,7 +129,9 @@
                 </div>
                 <br>
                <div class="space">
-                    <a href="#userxuseri">user flow/wireframe<i class="ph-bold ph-arrow-down"></i></a>
+                    <div class="line" style="background-color: #2F2B2A; margin-bottom:8px;"></div>
+                    <a href="#userxuseri">move to user flow/wireframe<i class="ph-bold ph-arrow-down"></i></a>
+                    <div class="line" style="background-color: #2F2B2A; margin-top:8px;"></div>
                </div>
             </div>
         </div>
@@ -139,7 +144,9 @@
         <div class="two-column">
             <div>
                 <div class="space">
-                    <a href="#problem-solution"><i class="ph-bold ph-arrow-up"></i>user experience/persona</a>
+                    <div class="line" style="background-color: #2F2B2A; margin-bottom:8px;"></div>
+                    <a href="#problem-solution"><i class="ph-bold ph-arrow-up"></i>back to problem-solution</a>
+                    <div class="line" style="background-color: #2F2B2A; margin-top:8px;"></div>
                 </div>
                 <br>
                 <h3>user flow</h3>
@@ -148,11 +155,13 @@
             <div>
                 <br>
                 <h3>wireframe</h3>
-                <img src="Assets/Moko/moko_All-Wireframe.jpg" onclick="window.open('Assets/Moko/moko_All-Wireframe.jpg', '_blank')" style="width: 100%; height: 300px;" >
+                <img src="Assets/Moko/moko_All-Wireframe.jpg"  class="lightbox-img" style="width: 100%; height: 300px;" >
                 <br>
                 <br>
                 <div class="space">
-                    <a href="#design">prototype/design systems<i class="ph-bold ph-arrow-down"></i></a>
+                    <div class="line" style="background-color: #2F2B2A; margin-bottom:8px;"></div>
+                    <a href="#design">move to prototype/design systems<i class="ph-bold ph-arrow-down"></i></a>
+                    <div class="line" style="background-color: #2F2B2A; margin-top:8px;"></div>
                 </div>
             </div>
         </div> 
@@ -166,11 +175,13 @@
         <div class="two-column">
             <div>
                 <div class="space">
-                    <a href="#userxuseri"><i class="ph-bold ph-arrow-up"></i>user flow/wireframe</a>
+                    <div class="line" style="background-color: #2F2B2A; margin-bottom:8px;"></div>
+                    <a href="#userxuseri"><i class="ph-bold ph-arrow-up"></i>back to user flow/wireframe</a>
+                    <div class="line" style="background-color: #2F2B2A; margin-top:8px;"></div>
                 </div>
                 <br>
                 <h3>prototype</h3>
-                <img src="Assets/Moko/moko-fullwbsite.jpg" onclick="window.open('Assets/Moko/moko-fullwbsite.jpg', '_blank')" style="height: 300px;" >
+                <img src="Assets/Moko/moko-fullwbsite.jpg"  class="lightbox-img" style="height: 300px;" >
             </div>
             <div>
                 <h3>design systems</h3>
@@ -212,9 +223,9 @@
     <footer>
         <p><i class="ph-bold ph-envelope-simple"></i> thadaphumphung@gmail.com</p>
         <div class="flex">
-            <a href="https://www.facebook.com/thada.phumphong.5/"><i class="ph-bold ph-facebook-logo"></i> facebook</a>
-            <a href="https://www.instagram.com/ohmmitz/"><i class="ph-bold ph-instagram-logo"></i> instagram</a>
-            <a href="https://www.linkedin.com/in/thada-phumphung-0501a0241""><i class="ph-bold ph-linkedin-logo"></i> linkedin</a>
+            <a href="https://www.facebook.com/thada.phumphong.5/"><i class="ph-bold ph-facebook-logo"></i></a>
+            <a href="https://www.instagram.com/ohmmitz/"><i class="ph-bold ph-instagram-logo"></i></a>
+            <a href="https://www.linkedin.com/in/thada-phumphung-0501a0241""><i class="ph-bold ph-linkedin-logo"></i></a>
         </div>
     </footer>
     <div id="overlay">

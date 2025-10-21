@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>portfolio</title>
-    <link rel="stylesheet" href="moko-style.css">
+    <title>Logo | Thada Phumphung</title>
+    <link rel="shortcut icon" href="Assets/profile.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"/>
 </head>
 <body>
+    <div class="pointer" aria-hidden="true"></div>
     <header>
         <a href="freeb.html"><i class="ph-bold ph-arrow-left"></i>freeb</a>
         <a href="index.html">thada phumphung</a>
@@ -26,16 +28,16 @@
                 </div>
             </div>
             <div class="image">
-                <img src="Assets/logo/logo-1.svg">
+                <img src="Assets/logo/logo-1.svg" class="lightbox-img">
             </div>
             <div class="image">
-                <img src="Assets/logo/logo-2.svg">
+                <img src="Assets/logo/logo-2.svg" class="lightbox-img">
             </div>
             <div class="image">
-                <img src="Assets/logo/logo-3.svg">
+                <img src="Assets/logo/logo-3.svg" class="lightbox-img">
             </div>
             <div class="image">
-                <img src="Assets/logo/logo-4.svg">
+                <img src="Assets/logo/logo-4.svg" class="lightbox-img">
             </div>
             <div class="text">
                 <h2>รายการโลโก้</h2>
@@ -48,19 +50,19 @@
                 </ul>
             </div>
             <div class="image">
-                <img src="Assets/logo/logo-5.svg">
+                <img src="Assets/logo/logo-5.svg" class="lightbox-img">
             </div>
             <div class="image">
-                <img src="Assets/logo/logo-6.svg">
+                <img src="Assets/logo/logo-6.svg" class="lightbox-img">
             </div>
             <div class="image">
-                <img src="Assets/logo/logo-7.svg">
+                <img src="Assets/logo/logo-7.svg" class="lightbox-img">
             </div>
             <div class="image">
-                <img src="Assets/logo/logo-8.svg">
+                <img src="Assets/logo/logo-8.svg" class="lightbox-img">
             </div>
             <div class="text">
-                <h2>ดูเพิ่มเติม</h2>
+                <h2>รายการโลโก้(2)</h2>
                 <ul>
                     <li>preepay | แอพพลิเคชั่นบริการการเงิน</li>
                     <li>festroot | เว็บไซต์หาที่พักตามที่จัดงานเทศการ</a></li>
@@ -69,18 +71,21 @@
                 </ul>
             </div>
             <div class="image">
-                <img src="Assets/logo/logo-9.svg">
+                <img src="Assets/logo/logo-9.svg" class="lightbox-img">
             </div>
         </div>
     </section>
     <footer>
         <p><i class="ph-bold ph-envelope-simple"></i> thadaphumphung@gmail.com</p>
         <div class="flex">
-            <a href="https://www.facebook.com/thada.phumphong.5/"><i class="ph-bold ph-facebook-logo"></i> facebook</a>
-            <a href="https://www.instagram.com/ohmmitz/"><i class="ph-bold ph-instagram-logo"></i> instagram</a>
-            <a href="https://www.linkedin.com/in/thada-phumphung-0501a0241""><i class="ph-bold ph-linkedin-logo"></i> linkedin</a>
+            <a href="https://www.facebook.com/thada.phumphong.5/"><i class="ph-bold ph-facebook-logo"></i></a>
+            <a href="https://www.instagram.com/ohmmitz/"><i class="ph-bold ph-instagram-logo"></i></a>
+            <a href="https://www.linkedin.com/in/thada-phumphung-0501a0241""><i class="ph-bold ph-linkedin-logo"></i></a>
         </div>
     </footer>
+    <div id="overlay">
+        <img id="fullImage" src="" >
+    </div> 
     <script src="script.js"></script>
 </body>
 </html>
