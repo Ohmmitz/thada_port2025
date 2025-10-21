@@ -71,8 +71,8 @@ h5{
     font-family: "FCVision-3";
     font-size: 12px;
     padding: 4px;
-    color: #F8F3EC;
-    background-color: #3939FF;
+    color: #3939FF;
+    border: 1px solid #3939FF;
 }
 
 h6{
@@ -250,7 +250,7 @@ img{
 }
 
 .image img:hover,.image-s:hover{
-  scale: 1.08;
+  scale: 1.04;
 }
 
 .two-column img{
@@ -423,6 +423,10 @@ body:has(.icon:hover,.image img:hover,.image-s:hover,footer a:hover,footer p:hov
       font-size: 12px;
       bottom: 0;
     }
+
+    .space{
+      display: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -438,6 +442,17 @@ body:has(.icon:hover,.image img:hover,.image-s:hover,footer a:hover,footer p:hov
     display: flex;
     flex-wrap: wrap;
   }
+
+  .three-column {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .two-column {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .text h4{
         font-size: 52px;
         padding: 0;
