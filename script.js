@@ -40,23 +40,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         });
 
-        const images = document.querySelectorAll('.lightbox-img');
-        const overlay = document.getElementById('overlay');
-        const fullImage = document.getElementById('fullImage');
+const images = document.querySelectorAll('.lightbox-img');
+const overlay = document.getElementById('overlay');
+const fullImage = document.getElementById('fullImage');
+const alret = document.querySelector('.alret');
 
-        images.forEach(img => {
-            img.addEventListener('click', () => {
-            fullImage.src = img.src;
-            overlay.style.display = 'flex';
-            });
-        });
+images.forEach(img => {
+  img.addEventListener('click', () => {
+    fullImage.src = img.src;
 
-        overlay.addEventListener('click', (e) => {
-            if (e.target !== fullImage) {
-            overlay.style.display = 'none';
-            }
-        });
+    overlay.style.display = 'flex';
+    fullImage.classList.remove('animate-out');
+    fullImage.classList.add('animate-in');
 
+    // Animate alert in
+    alret.classList.remove('alret-out');
+    alret.classList.add('alret-in');
+  });
+});
+
+overlay.addEventListener('click', (e) => {
+  if (e.target !== fullImage) {
+    // Animate out
+    fullImage.classList.remove('animate-in');
+    fullImage.classList.add('animate-out');
+
+    alret.classList.remove('alret-in');
+    alret.classList.add('alret-out');
+
+    // Hide overlay after animation finishes
+    setTimeout(() => {
+      overlay.style.display = 'none';
+    }, 400); // match animation duration
+  }
+});
+        
 
 
 const isReducedMotion = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
@@ -91,5 +109,11 @@ if (shouldRun) {
     }
 
     animate();
+
+    document.getElementById('certificate-btn').addEventListener('click', () => {
+    window.location.href = 'https://www.canva.com/design/DAGpGaEI5JY/0MV1tPGk39DahBaWaokHQA/edit';
+
+    
+});
 }
   
