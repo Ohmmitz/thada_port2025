@@ -128,6 +128,10 @@ header a{
   font-size: 24px;
 }
 
+.icon {
+  font-size: 24px; 
+}
+
 #menuToggle{
   margin: 0;
   padding: 12px 24px;
@@ -185,7 +189,6 @@ header #menuList.show {
     opacity 0.3s ease;
 }
 
-
 .menu-item:hover {
   transform: translateX(0);
   cursor: pointer;
@@ -194,7 +197,7 @@ header #menuList.show {
   opacity: 1;
 }
 
-.menu-item i {
+.menu-item .icon {
   opacity: 0;
   transform: translateX(-6px);
   transition:
@@ -202,7 +205,7 @@ header #menuList.show {
     opacity 0.3s ease;
 }
 
-.menu-item:hover i {
+.menu-item:hover .icon {
   opacity: 1;
   background-color: #F8F3EC;
   color: #2F2B2A;
