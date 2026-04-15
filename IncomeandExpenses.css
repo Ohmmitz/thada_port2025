@@ -313,11 +313,11 @@ input, select, textarea {
 @media (max-width: 600px){
 
     .box {
-        width: 90%;
-        max-width: 400px;
+        width: 96%;
+        max-width: 92%;
     }
     .container{
         padding: 16px;
-        width: 80%;
+        width: 92%;
     }
 }
