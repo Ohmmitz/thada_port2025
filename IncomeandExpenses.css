@@ -61,10 +61,25 @@ p{
     font-size: 1rem;
 }
 
+.box {
+  position: absolute;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 440px;
+  height: 16px;
+  background-color: #675C5C;
+  border: 1px solid #433B3B;
+  z-index: -1;
+}
+
 .container{
     background-color: #F1F0F0;
     border: 1px solid #433B3B;
     padding: 16px;
+    width: 400px;
+    margin: 0 auto;
 }
 
 .container img{
@@ -80,19 +95,39 @@ p{
 
 .tag-group {
     margin: 16px 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
     gap: 8px;
+    overflow-x: auto;   
+    flex-wrap: nowrap;  
+    padding: 8px; 
+    background-color: #D1CECE;
+    border: 1px solid #433B3B;
 }
 
 .tag {
-  padding: 6px 10px;
-  border: 1px solid #433B3B;
-  background: #FFECEC;
-  color: #433B3B;
-  cursor: pointer;
-  font-size: 12px;
-  transition: 0.2s;
+    flex: 0 0 auto; 
+    width: 96px; 
+    padding: 8px;
+    font-family: "Anuphan", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1rem;
+    border: 1px solid #433B3B;
+    background: #FFECEC;
+    color: #433B3B;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 4px;
 }
 
 .tag:hover {
@@ -106,9 +141,44 @@ p{
   border-color: #433B3B;
 }
 
+.toggle-group {
+  display: flex;
+  padding: 8px;
+  gap: 8px;
+  margin: 8px 0;
+  background-color: #D1CECE;
+  border: 1px solid #433B3B;
+  overflow: hidden;
+}
+
+.toggle {
+  flex: 1;
+  padding: 8px;
+  background: #F1F0F0;
+  border: 1px solid #433B3B;
+  font-family: "Anuphan", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1rem;
+  cursor: pointer;
+}
+
+.toggle.active {
+  background: #433B3B;
+  color: #F1F0F0;
+}
+
+.toggle[data-type="income"].active {
+  background: #008A2E;
+}
+
+.toggle[data-type="expense"].active {
+  background: #FF1F1F;
+}
+
 
 input, select, textarea {
-    width: 90%;
+    width: 92%;
     margin: 8px 0;
     padding: 8px;
 }
@@ -119,7 +189,8 @@ input, select, textarea {
     gap: 16px;
 }
 
-button {
+.submit {
+    margin: 8px 0 0 0;
     font-family: "Anuphan", sans-serif;
     font-weight: 500;
     font-style: normal;
@@ -133,18 +204,9 @@ button {
     transition: all 0.3s;
 }
 
-button:hover{
+.submit:hover{
     background-color: #FF1F1F;
     color: #F1F0F0;
-}
-
-#status{
-    margin: 8px 0;
-    padding: 8px;
-    background-color: #433B3B;
-    color: #F1F0F0;
-    transition: all 0.5s;
-
 }
 
 #clock {
@@ -180,6 +242,22 @@ button:hover{
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  gap: 8px;
+}
+
+.modal-actions button {
+    margin: 8px 0 0 0;
+    font-family: "Anuphan", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1rem;
+    width: 100%;
+    padding: 16px;
+    background: #433B3B;
+    color: #F1F0F0;
+    border: 1px solid #433B3B;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 .modal .confirm {
@@ -197,8 +275,30 @@ button:hover{
 }
 
 .modal-content.success button {
-  margin-top: 15px;
-  background: #FF1F1F;
-  color: #F1F0F0;
-  border: 1px solid #433B3B;
+    margin: 8px 0 0 0;
+    font-family: "Anuphan", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1rem;
+    width: 100%;
+    padding: 16px;
+    background: #FF1F1F;
+    color: #F1F0F0;
+    border: 1px solid #433B3B;
+}
+
+input:focus {
+  outline: 2px solid black;
+}
+
+@media (max-width: 600px){
+
+    .box {
+        width: 90%;
+        max-width: 400px;
+    }
+    .container{
+        padding: 16px;
+        width: 80%;
+    }
 }
