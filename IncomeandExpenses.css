@@ -317,6 +317,7 @@ input, select, textarea {
         max-width: 90%;
     }
     .container{
+        margin: 0;
         padding: 16px;
         width: 94%;
     }
