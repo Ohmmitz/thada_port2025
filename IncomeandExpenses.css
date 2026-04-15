@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&display=swap');
+
+*{
+    margin: 0;
+    top: 0;
+    left: 0;
+}
+
+body{
+    font-family: "Anuphan", sans-serif;
+    font-optical-sizing: auto;
+    text-transform: uppercase;
+    background-color: #0066FF;
+    background-image: 
+        linear-gradient(#0047B6 1px, transparent 1px),
+        linear-gradient(90deg, #0047B6 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: #433B3B;
+    padding: 80px 80px;
+}
+
+h1{
+    font-weight: 900;
+    font-style: normal;
+    font-size: 3rem;
+}
+
+h2{
+    font-weight: 800;
+    font-style: normal;
+    font-size: 2.5rem;
+}
+
+h3{
+    font-weight: 700;
+    font-style: normal;
+    font-size: 2rem;
+}
+
+h4{
+    font-weight: 600;
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+h5{
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.25rem;
+}
+
+h6{
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.125rem;
+}
+
+p{
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1rem;
+}
+
+.container{
+    background-color: #F1F0F0;
+    border: 1px solid #433B3B;
+    padding: 16px;
+}
+
+.container img{
+    width: 60%;
+}
+
+.form {
+    margin: auto;
+    background: #F1F0F0;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.tag-group {
+    margin: 16px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.tag {
+  padding: 6px 10px;
+  border: 1px solid #433B3B;
+  background: #FFECEC;
+  color: #433B3B;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+.tag:hover {
+  background: #00E050;
+  color: #433B3B;
+}
+
+.tag.active {
+  background:#FFD400;
+  color: #433B3B;
+  border-color: #433B3B;
+}
+
+
+input, select, textarea {
+    width: 90%;
+    margin: 8px 0;
+    padding: 8px;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+button {
+    font-family: "Anuphan", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1rem;
+    width: 100%;
+    padding: 16px;
+    background: #FFD400;
+    color: #433B3B;
+    border: 1px solid #433B3B;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+button:hover{
+    background-color: #FF1F1F;
+    color: #F1F0F0;
+}
+
+#status{
+    margin: 8px 0;
+    padding: 8px;
+    background-color: #433B3B;
+    color: #F1F0F0;
+    transition: all 0.5s;
+
+}
+
+#clock {
+    padding: 8px;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+    background-color: #FF1F1F;
+    color: #F1F0F0;
+    border: 1px solid #433B3B;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #433b3b76;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: #F1F0F0;
+  padding: 24px;
+  width: 300px;
+  border: 1px solid #433B3B;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal .confirm {
+  background: #00E050;
+  color: #433B3B;
+  border: 1px solid #433B3B;
+}
+
+.modal-content.success {
+  text-align: center;
+}
+
+.modal-content.success h3 {
+  color: #433B3B;
+}
+
+.modal-content.success button {
+  margin-top: 15px;
+  background: #FF1F1F;
+  color: #F1F0F0;
+  border: 1px solid #433B3B;
+}

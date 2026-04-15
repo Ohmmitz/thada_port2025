@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ohm's Income and Expenses</title>
+    <link rel="shortcut icon" href="Assets/profile.png" type="image/x-icon">
+    <link rel="stylesheet" href="IncomeandExpenses.css">
+</head>
+<body>
+    <div class="container">
+        <img src="Assets/icon_Finance.png">
+        <h2>บันทึกรายรับ - รายจ่าย</h2>
+        <p>สำหรับบันทึกการใช้จ่ายในแต่ละวัน โดยรอบในแต่ละเดือนจะเริ่มจากวันที่ 26 ของเดือนก่อนหน้า ถึง วันที่ 25 แล้วมีการตัดรอบไปเดือนถัดไปวันที่ 26 เวลา 06:00 น. </p>
+        <br>
+        <div id="clock"></div>
+        <h5>หมวดหมู่ค่าใช้จ่าย</h5>
+        <div class="tag-group" id="code">
+            <button class="tag active" data-value="INCO"><img src="Assets/icon_income.png"><br>เงินเข้าทั้งหมด</button>
+            <button class="tag" data-value="COOK"><img src="Assets/icon_cook.png"><br>ซื้อวัตถุดิบ</button>
+            <button class="tag" data-value="DINE"><img src="Assets/icon_dine.png"><br>กินที่ร้าน/กลับบ้าน</button>
+            <button class="tag" data-value="CELE"><img src="Assets/icon_shabu.png"><br>กินเลี้ยง</button>
+            <button class="tag" data-value="WATE"><img src="Assets/icon_pump.png"><br>ค่าประปา</button>
+            <button class="tag" data-value="ELEC"><img src="Assets/icon_meter.png"><br>ค่าไฟฟ้า</button>
+            <button class="tag" data-value="YOUT"><img src="Assets/icon_youtube.png"><br>Youtube Premium</button>
+            <button class="tag" data-value="NETX"><img src="Assets/icon_popcorn.png"><br>Netflix</button>
+            <button class="tag" data-value="AISP"><img src="Assets/icon_phone.png"><br>เบอร์มือถือรายเดือน</button>
+            <button class="tag" data-value="BTST"><img src="Assets/icon_train.png"><br>เติมเที่ยว (BTS)</button>
+            <button class="tag" data-value="CC10"><img src="Assets/icon_grab.png"><br>รถกระป้อ/Grab</button>
+            <button class="tag" data-value="TSSP"><img src="Assets/icon_soap.png"><br>ทำความสะอาดร่างกาย</button>
+            <button class="tag" data-value="WDEQ"><img src="Assets/icon_laundry.png"><br>ทำความสะอาดเสื้อผ้า</button>
+            <button class="tag" data-value="ETCM"><img src="Assets/icon_paper.png"><br>อุปกรณ์อื่นๆ</button>
+            <button class="tag" data-value="WANT"><img src="Assets/icon_want.png"><br>สิ่งที่ต้องการ</button>
+            <button class="tag" data-value="SAVE"><img src="Assets/icon_save.png"><br>เงินเก็บออม/ลงทุน</button>
+            <button class="tag" data-value="DEDT"><img src="Assets/icon_debt.png"><br>จ่ายหนี้</button>
+            <button class="tag" data-value="INOT"><img src="Assets/icon_OT.png"><br>Incentive/OT</button>
+            <button class="tag" data-value="FMGM"><img src="Assets/icon_borrow.png"><br>ยืมพ่อแม่</button>
+            <button class="tag" data-value="MFGM"><img src="Assets/icon_give.png"><br>ส่งเงินให้พ่อแม่</button>
+            <button class="tag" data-value="EMTC"><img src="Assets/icon_191.png"><br>ค่าเดินทางฉุกเฉิน</button>
+        </div>
+        <h5>รายการ</h5>
+        <input id="item" placeholder="เช่น เงินเดือน , ค่า KFC , สันคอหมู">
+        <h5>จำนวน</h5>
+        <input id="amount" type="number" placeholder="ลงเลขจำนวน">
+        <h5>หน่วย</h5>
+        <select id="unit" onchange="checkOtherUnit()">
+            <option></option>
+            <option>ชิ้น</option>
+            <option>ขวด</option>
+            <option>แก้ว</option>
+            <option>ชุด</option>
+            <option>จาน</option>
+            <option>กรัม</option>
+            <option>กิโลกรัม</option>
+            <option>ถุง</option>
+            <option>กล่อง</option>
+            <option>ปี</option>
+            <option>เดือน</option>
+            <option>วัน</option>
+            <option>สัปดาห์</option>
+            <option>ครั้ง</option>
+            <option>เที่ยว</option>
+            <option value="other">อื่นๆ</option>
+        </select>
+        <input id="unitOther" placeholder="ระบุหน่วย" style="display:none">
+        <h5>จาก</h5>
+        <input id="from" placeholder="จาก">
+        <h5>ถึง</h5>
+        <input id="to" placeholder="ถึง">
+        <div class="grid">
+            <div>
+                <h5>รายรับ</h5>
+                <input id="income" type="number" placeholder="รายรับ">
+            </div>
+            <div>
+                <h5>รายจ่าย</h5>
+                <input id="expense" type="number" placeholder="รายจ่าย">
+            </div>
+        </div>
+        <h5>หมายเหตุ</h5>
+        <textarea id="note" placeholder="หมายเหตุ"></textarea>
+        <button onclick="submitData()">ส่งข้อมูล</button>
+    </div>
+    <script src="IncomeandExpenses.js"></script>
+    </body>
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h3>🔍 ตรวจสอบข้อมูลก่อนส่ง</h3>
+            <div id="summary"></div>
+            <div class="modal-actions">
+            <button onclick="closeModal()">แก้ไข</button>
+            <button class="confirm" onclick="confirmSubmit()">ยืนยันส่ง</button>
+            </div>
+        </div>
+    </div>
+    <div id="successModal" class="modal">
+        <div class="modal-content success">
+            <h3>✅ บันทึกสำเร็จ</h3>
+            <p id="successTime"></p>
+
+            <button onclick="closeSuccess()">ปิด</button>
+        </div>
+    </div>
+    
+</html>
