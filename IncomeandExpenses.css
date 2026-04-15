@@ -229,6 +229,7 @@ input, select, textarea {
   background: #433b3b76;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(4px);
 }
 
 .modal-content {
@@ -287,8 +288,26 @@ input, select, textarea {
     border: 1px solid #433B3B;
 }
 
-input:focus {
-  outline: 2px solid black;
+.modal-content.loading {
+  text-align: center;
+  padding: 30px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #F1F0F0;
+  border-top: 4px solid #0047B6;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 600px){

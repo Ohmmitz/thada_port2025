@@ -35,7 +35,7 @@ document.querySelectorAll(".tag").forEach(tag => {
 
     selectedCode = tag.dataset.value;
 
-    applyCodeConfig(selectedCode); // 🔥 เรียกใช้ตรงนี้
+    applyCodeConfig(selectedCode);
   });
 });
 
@@ -147,11 +147,11 @@ function showSummary() {
     <p><b>รายการ:</b> ${tempData.item}</p>
     <p><b>จำนวน:</b> ${tempData.amount || "-"} ${tempData.unit}</p>
     <p><b>จำนวนเงิน:</b> ${Number(tempData.value).toLocaleString()} บาท</p>
-    <p><b>ช่วงเวลา:</b> ${tempData.from || "-"}</p>
+    <p><b>แหล่งที่มา/ปลายทาง:</b> ${tempData.from || "-"}</p>
     ${tempData.type === "income" ? `
-    <p><b>รายรับ:</b> <span style="color:green">${Number(tempData.value).toLocaleString()}</span></p>
+    <p><b>รายรับ:</b> <span style="color:green">${Number(tempData.value).toLocaleString()}</span> บาท</p>
         ` : `
-        <p><b>รายจ่าย:</b> <span style="color:red">${Number(tempData.value).toLocaleString()}</span></p>
+        <p><b>รายจ่าย:</b> <span style="color:red">${Number(tempData.value).toLocaleString()}</span> บาท</p>
         `}
     <p><b>หมายเหตุ:</b> ${tempData.note || "-"}</p>
     `;
@@ -164,7 +164,17 @@ function closeModal() {
   document.getElementById("confirmModal").style.display = "none";
 }
 
+let isSubmitting = false;
+
 function confirmSubmit() {
+    if (isSubmitting) return;
+    isSubmitting = false;
+  // 👉 ปิด confirm modal
+  closeModal();
+
+  // 👉 เปิด loading
+  document.getElementById("loadingModal").style.display = "flex";
+
   fetch(API_URL, {
     method: "POST",
     body: JSON.stringify(tempData)
@@ -174,20 +184,25 @@ function confirmSubmit() {
     const now = new Date();
     const formattedDate = now.toLocaleString('th-TH');
 
-    closeModal();
+    // 👉 ปิด loading
+    document.getElementById("loadingModal").style.display = "none";
 
+    // 👉 แสดง success
     document.getElementById("successTime").innerText = formattedDate;
     document.getElementById("successModal").style.display = "flex";
 
     clearForm();
 
-    // ✅ auto close success
     setTimeout(closeSuccess, 2000);
   })
   .catch(err => {
+    document.getElementById("loadingModal").style.display = "none";
     alert("❌ เกิดข้อผิดพลาด");
     console.error(err);
   });
+
+  document.getElementById("loadingText").innerText = "กำลังเชื่อมต่อ...";
+
 }
 
 // ================= SUCCESS =================

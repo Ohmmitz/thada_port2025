@@ -40,14 +40,14 @@
             <button class="tag" data-value="EMTC"><img src="Assets/icon_191.png"><br>ค่าเดินทางฉุกเฉิน</button>
         </div>
         <div class="toggle-group">
-            <button class="toggle active" data-type="income">Income</button>
-            <button class="toggle" data-type="expense">Expense</button>
+            <button class="toggle active" data-type="income">รายรับ</button>
+            <button class="toggle" data-type="expense">รายจ่าย</button>
         </div>
         <h5>จำนวนเงิน</h5>
         <input id="amountMoney" type="text" placeholder="จำนวนเงิน" max="99999">
         <h5>รายการ</h5>
         <input id="item" placeholder="เช่น เงินเดือน , ค่า KFC , สันคอหมู">
-        <h5>จาก</h5>
+        <h5>แหล่งที่มา/ปลายทาง</h5>
         <input id="from" placeholder="จาก">
         <div class="grid">
             <div>
@@ -95,6 +95,12 @@
             <button onclick="closeModal()">แก้ไข</button>
             <button class="confirm" onclick="confirmSubmit()">ยืนยันส่ง</button>
             </div>
+        </div>
+    </div>
+    <div id="loadingModal" class="modal">
+        <div class="modal-content loading">
+            <div class="spinner"></div>
+            <p id="loadingText">กำลังบันทึกข้อมูล...</p>
         </div>
     </div>
     <div id="successModal" class="modal">
