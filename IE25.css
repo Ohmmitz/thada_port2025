@@ -583,7 +583,7 @@ button:disabled {
 
 .summary-item b {
   display: block;
-  font-size: 48px;
+  font-size: 32px;
   margin-top: 4px;
 }
 
@@ -605,7 +605,6 @@ button:disabled {
 
 
 @media (max-width: 600px){
-
   h1{
     font-size: 34px;
   }
@@ -635,6 +634,7 @@ button:disabled {
   }
 
     body{
+      margin: 0;
       padding: 32px 32px;
     }
 
