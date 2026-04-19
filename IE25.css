@@ -18,43 +18,43 @@ body{
 h1{
     font-weight: 900;
     font-style: normal;
-    font-size: 3rem;
+    font-size: 48px;
 }
 
 h2{
     font-weight: 800;
     font-style: normal;
-    font-size: 2.5rem;
+    font-size: 36px;
 }
 
 h3{
     font-weight: 700;
     font-style: normal;
-    font-size: 2rem;
+    font-size: 32px;
 }
 
 h4{
     font-weight: 600;
     font-style: normal;
-    font-size: 1.5rem;
+    font-size: 24px;
 }
 
 h5{
     font-weight: 500;
     font-style: normal;
-    font-size: 1.25rem;
+    font-size: 20px;
 }
 
 h6{
     font-weight: 400;
     font-style: normal;
-    font-size: 1.125rem;
+    font-size: 18px;
 }
 
 p{
     font-weight: 300;
     font-style: normal;
-    font-size: 1rem;
+    font-size: 16px;
 }
 
 
@@ -103,13 +103,13 @@ p{
 }
 
 .tag-group {
-    margin: 16px 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 8px;
-    gap: 8px;
-    animation: fadeIn 0.2s ease;
-    align-items: stretch;
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 8px;
+  gap: 8px;
+  animation: fadeIn 0.2s ease;
+  align-items: stretch;
 }
 
 .tag {
@@ -118,7 +118,7 @@ p{
   font-family: "Anuphan", sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: 1rem;
+  font-size: 16px;
   border: none;
   border-radius: 16px;
   background: #D1CECE;
@@ -150,9 +150,9 @@ p{
 
 input, select, textarea {
   font-family: "Anuphan", sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   font-style: normal;
-  font-size: 1rem;
+  font-size: 16px;
   width: 92%;
   margin: 8px 0;
   padding: 8px;
@@ -163,9 +163,9 @@ input, select, textarea {
   margin: 8px 0;
   max-width: 440px;
   font-family: "Anuphan", sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   font-style: normal;
-  font-size: 2rem;
+  font-size: 48px;
   padding-left: 40px;
   padding: 16px 20px;    
   border-radius: 12px;
@@ -193,7 +193,7 @@ input, select, textarea {
     font-family: "Anuphan", sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 1rem;
+    font-size: 20px;
     width: 100%;
     padding: 16px;
     background: #FF7A0C;
@@ -212,14 +212,13 @@ input, select, textarea {
 #clock {
   margin-top: 4px;
     padding: 8px 16px;
-    font-size: 14px;
+    font-size: 12px;
     text-align: left;
-    margin-bottom: 10px;
-    background-color: #433B3B;
-    color: #F1F0F0;
+    margin-bottom: 16px;
+    background-color: #DFE3FF;
+    color: #433B3B;
     border-radius: 16px;
 }
-
 
 .modal {
   display: none;
@@ -235,8 +234,8 @@ input, select, textarea {
 }
 
 .icon_img{
-  width: 80px;
-  height: 80px;
+  width: 80%;
+  height: 80%;
 }
 
 .modal-content {
@@ -258,7 +257,7 @@ input, select, textarea {
     font-family: "Anuphan", sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 1rem;
+    font-size: 20px;
     width: 100%;
     padding: 16px;
     background: #433B3B;
@@ -289,7 +288,7 @@ input, select, textarea {
     font-family: "Anuphan", sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 1rem;
+    font-size: 20px;
     width: 100%;
     padding: 16px;
     background: #433B3B;
@@ -340,7 +339,7 @@ input, select, textarea {
   font-weight: 400;
   font-style: normal;
   display: block;
-  font-size: 1rem;
+  font-size: 20px;
   color: red;
   margin-top: 4px;
   min-height: 14px;
@@ -360,24 +359,26 @@ input, select, textarea {
   border-radius: 16px;
   background-color: #fff;
   padding: 16px;
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 .history-income {
   color: #16a34a; 
   font-weight: 600;
+  font-size: 20px;
 }
 
 .history-expense {
   color: #dc2626; 
   font-weight: 600;
+  font-size: 20px;
 }
 
 .history-header {
   display: flex;
   justify-content: space-between;
   align-items: end;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .history-header button {
@@ -385,9 +386,9 @@ input, select, textarea {
   color: #F1F0F0;
   border: none;
   padding: 16px 16px;
-  border-radius: 16px;
+  border-radius: 20px;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 20px;
   transition: 0.2s;
 }
 
@@ -400,7 +401,7 @@ input, select, textarea {
   font-family: "Anuphan", sans-serif;
   font-weight: 500;
   font-style: normal;
-  font-size: 1rem;
+  font-size: 16px;
   width: 100%;
   padding: 16px;
   background: none;
@@ -411,23 +412,19 @@ input, select, textarea {
   transition: all 0.2s ease;
 }
 
-/* hover */
 .btn_history:hover {
   color: #FF7A0C;
   text-decoration: none;
 }
 
-/* active (ตอนกด) */
 .btn_history:active {
   opacity: 0.6;
 }
 
-/* focus (accessibility) */
 .btn_history:focus {
   outline: none;
   text-decoration: underline;
 }
-
 
 #loadingBar {
   position: relative;
@@ -440,7 +437,6 @@ input, select, textarea {
   display: none;
 }
 
-/* แถบวิ่ง */
 #loadingBar::before {
   content: "";
   position: absolute;
@@ -449,7 +445,6 @@ input, select, textarea {
   height: 100%;
   border-radius: 999px;
 
-  /* 🔥 gradient premium */
   background: linear-gradient(
     90deg,
     #ffb347,
@@ -507,9 +502,9 @@ input, select, textarea {
 
 .form-input:disabled {
   font-family: "Anuphan", sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   font-style: normal;
-  font-size: 1rem;
+  font-size: 16px;
   width: 92%;
   margin: 8px 0;
   padding: 8px;
@@ -588,37 +583,57 @@ button:disabled {
 
 .summary-item b {
   display: block;
-  font-size: 2rem;
+  font-size: 48px;
   margin-top: 4px;
 }
 
 .summary-item.income b {
-  color: green;
+  color: #00E050;
 }
 
 .summary-item.expense b {
-  color: red;
+  color: #dc2626;
 }
 
 #todayIncome {
-  color: #1a9b5f;
+  color: #00E050;
 }
 
 #todayExpense {
-  color: #e24a4a;
-}
-
-/* optional: glow effect */
-.summary-item.income b {
-  text-shadow: 0 0 8px rgba(26,155,95,0.2);
-}
-
-.summary-item.expense b {
-  text-shadow: 0 0 8px rgba(226,74,74,0.2);
+  color: #dc2626;
 }
 
 
 @media (max-width: 600px){
+
+  h1{
+    font-size: 34px;
+  }
+
+  h2{
+    font-size: 28px;
+  }
+
+  h3{
+    font-size: 24px;
+  }
+
+  h4{
+    font-size: 18px;
+  }
+
+  h5{
+    font-size: 15px;
+  }
+
+  h6{
+    font-size: 12px;
+  }
+
+  p{
+    font-size: 12px;
+  }
+
     body{
       padding: 32px 32px;
     }
@@ -633,4 +648,10 @@ button:disabled {
       font-size: 1.6rem;
       padding: 14px;
     }
+
+    .tag{
+      font-size: 12px;
+    }
+
+
 }

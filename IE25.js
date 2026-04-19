@@ -24,8 +24,8 @@ const codeConfig = {
   COOK: { type: "expense" },
   DINE: { type: "expense" },
   CELE: { type: "expense" },
-  WATE: { type: "expense", from: "การประปานครหลวง (ผ่านนิติ)", amount: "1", unit:"งวด"},
-  ELEC: { type: "expense", from: "การไฟฟ้านครหลวง", amount: "1", unit:"งวด"},
+  WATE: { type: "expense", item: "จ่ายค่าน้ำ", from: "การประปานครหลวง (ผ่านนิติ)", amount: "1", unit:"งวด"},
+  ELEC: { type: "expense", item: "จ่ายค่าไฟ", from: "การไฟฟ้านครหลวง", amount: "1", unit:"งวด"},
   YOUT: { type: "expense", value: 199, item: "จ่ายค่า Youtube premium", from: "Youtube", amount: "1", unit:"เดือน"},
   NETX: { type: "expense", value: 419, item: "จ่ายค่า Netflix", from: "Netflix", amount: "1", unit:"เดือน"},
   AISP: { type: "expense", value: 641, item: "จ่ายค่าเบอร์มือถือรายเดือน", from: "AIS", amount: "1", unit:"เดือน"},
@@ -36,7 +36,7 @@ const codeConfig = {
   ETCM: { type: "expense" },
   WANT: { type: "expense" },
   SAVE: { type: "expense" },
-  DEBT: { type: "expense" },
+  DEBT: { type: "expense" , item: "จ่ายหนี้", },
   MFGM: { type: "expense" },
   EMTC: { type: "expense" }
 };
