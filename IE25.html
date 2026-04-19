@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ohm's Income and Expenses</title>
+    <link rel="shortcut icon" href="Assets/profile.png" type="image/x-icon">
+    <link rel="stylesheet" href="IE25.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <img src="Assets/app icon/icon_Finance.png">
+        <h2>บันทึกรายรับ - รายจ่าย</h2>
+        <p>สำหรับบันทึกการใช้จ่ายในแต่ละวัน โดยรอบในแต่ละเดือนจะเริ่มจากวันที่ 26 ของเดือนก่อนหน้า ถึง วันที่ 25 แล้วมีการตัดรอบไปเดือนถัดไปวันที่ 26 เวลา 06:00 น. </p>
+        <br>
+        <h5>หมวดหมู่ค่าใช้จ่าย</h5>
+        <div class="category-group">
+            <button class="category" data-category="income">รายได้</button>
+            <button class="category" data-category="food">อาหาร</button>
+            <button class="category" data-category="utility">สาธารณูปโภค</button>
+            <button class="category" data-category="transport">เดินทาง</button>
+            <button class="category" data-category="personal">ของใช้ส่วนตัว</button>
+            <button class="category" data-category="self">เกี่ยวกับตัวเอง</button>
+        </div>
+        <div class="tag-group" id="code" style="display:none;">
+            <button class="tag" data-value="INCO"><img src="Assets/app icon/icon_cash.png"><br>เงินเดือน</button>
+            <button class="tag" data-value="INOT"><img src="Assets/app icon/icon_OT.png"><br>Incentive</button>
+            <button class="tag" data-value="FMGM"><img src="Assets/app icon/icon_borrow.png"><br>ยืมพ่อแม่</button>
+            <button class="tag" data-value="BONU"><img src="Assets/app icon/icon_income.png"><br>ได้เงินเพิ่ม</button>
+            <button class="tag" data-value="COOK"><img src="Assets/app icon/icon_cook.png"><br>ซื้อวัตถุดิบ</button>
+            <button class="tag" data-value="DINE"><img src="Assets/app icon/icon_dine.png"><br>กินที่ร้าน/กลับบ้าน</button>
+            <button class="tag" data-value="CELE"><img src="Assets/app icon/icon_shabu.png"><br>กินเลี้ยง</button>
+            <button class="tag" data-value="WATE"><img src="Assets/app icon/icon_pump.png"><br>ค่าประปา</button>
+            <button class="tag" data-value="ELEC"><img src="Assets/app icon/icon_meter.png"><br>ค่าไฟฟ้า</button>
+            <button class="tag" data-value="YOUT"><img src="Assets/app icon/icon_youtube.png"><br>Youtube Premium</button>
+            <button class="tag" data-value="NETX"><img src="Assets/app icon/icon_popcorn.png"><br>Netflix</button>
+            <button class="tag" data-value="AISP"><img src="Assets/app icon/icon_phone.png"><br>เบอร์มือถือรายเดือน</button>
+            <button class="tag" data-value="BTST"><img src="Assets/app icon/icon_train.png"><br>เติมเที่ยว (BTS)</button>
+            <button class="tag" data-value="CC10"><img src="Assets/app icon/icon_grab.png"><br>รถกระป้อ/Grab</button>
+            <button class="tag" data-value="TSSP"><img src="Assets/app icon/icon_soap.png"><br>ทำความสะอาดร่างกาย</button>
+            <button class="tag" data-value="WDEQ"><img src="Assets/app icon/icon_laundry.png"><br>ทำความสะอาดเสื้อผ้า</button>
+            <button class="tag" data-value="ETCM"><img src="Assets/app icon/icon_paper.png"><br>อุปกรณ์อื่นๆ</button>
+            <button class="tag" data-value="WANT"><img src="Assets/app icon/icon_want.png"><br>สิ่งที่ต้องการ</button>
+            <button class="tag" data-value="SAVE"><img src="Assets/app icon/icon_save.png"><br>เงินเก็บออม/ลงทุน</button>
+            <button class="tag" data-value="DEBT"><img src="Assets/app icon/icon_debt.png"><br>จ่ายหนี้</button>
+            <button class="tag" data-value="MFGM"><img src="Assets/app icon/icon_give.png"><br>ส่งเงินให้พ่อแม่</button>
+            <button class="tag" data-value="EMTC"><img src="Assets/app icon/icon_191.png"><br>ค่าเดินทางฉุกเฉิน</button>
+        </div>
+        <h5>จำนวนเงิน</h5>
+        <div class="money-field"> 
+            <span class="currency">฿</span>
+            <input id="amountMoney" class="form-input" type="text" inputmode="numeric" placeholder="0" autocomplete="off"/>
+            <br>
+        </div>
+        <div id="clock"></div>
+        <h5>รายการ</h5>
+        <input id="item" class="form-input" placeholder="เช่น เงินเดือน , ค่า KFC , สันคอหมู">
+        <h5>แหล่งที่มา/ปลายทาง</h5>
+        <input id="from" class="form-input" placeholder="จาก">
+        <div class="grid">
+            <div>
+                <h5>จำนวน</h5>
+                <input id="amount" class="form-input" type="number" inputmode="numeric" placeholder="ลงเลขจำนวน">
+            </div>
+            <div>
+                <h5>หน่วย</h5>
+                <select id="unit" class="form-input" onchange="checkOtherUnit()">
+                    <option></option>
+                    <option>ชิ้น</option>
+                    <option>ขวด</option>
+                    <option>แก้ว</option>
+                    <option>ชุด</option>
+                    <option>ก้อน</option>
+                    <option>จาน</option>
+                    <option>กรัม</option>
+                    <option>กิโลกรัม</option>
+                    <option>ถุง</option>
+                    <option>กล่อง</option>
+                    <option>แพ็ค</option>
+                    <option>ปี</option>
+                    <option>เดือน</option>
+                    <option>วัน</option>
+                    <option>สัปดาห์</option>
+                    <option>ครั้ง</option>
+                    <option>เที่ยว</option>
+                    <option>งวด</option>
+                    <option value="other">อื่นๆ</option>
+                </select>
+                <input id="unitOther" placeholder="ระบุหน่วย" style="display:none">    
+            </div>
+        </div>
+        <h5>หมายเหตุ</h5>
+        <textarea id="note" class="form-input" placeholder="หมายเหตุ"></textarea>
+        <button id="submitBtn" onclick="submitData()" class="submit">ส่งข้อมูล</button>
+        <button onclick="goToHistory()" class="btn_history">ดูประวัติค่าใช้จ่าย</button>
+    </div>
+    <script src="IE25.js"></script>
+    </body>
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <h3>ตรวจสอบข้อมูล</h3>
+            <div id="summary"></div>
+            <div class="modal-actions">
+            <button onclick="closeModal()">แก้ไข</button>
+            <button class="confirm" onclick="confirmSubmit()">ยืนยันส่ง</button>
+            </div>
+        </div>
+    </div>
+    <div id="loadingModal" class="modal">
+        <div class="modal-content loading">
+            <div class="spinner"></div>
+            <p id="loadingText">กำลังบันทึกข้อมูล...</p>
+        </div>
+    </div>
+    <div id="successModal" class="modal">
+        <div class="modal-content success">
+            <img src="Assets/app icon/icon_correct.png" class="icon_img">
+            <h3>บันทึกสำเร็จ</h3>
+            <p id="successTime"></p>
+            <button onclick="closeSuccess()">ปิด</button>
+            <button onclick="goToHistory()" class="btn_history">ดูประวัติค่าใช้จ่าย</button>
+        </div>
+    </div>
+</html>

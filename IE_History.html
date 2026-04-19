@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ohm's Income and Expenses - History</title>
+    <link rel="shortcut icon" href="Assets/profile.png" type="image/x-icon">
+    <link rel="stylesheet" href="IE25.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/bold/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="history-box">
+            <div class="history-header">
+                <button onclick="goBack()"><i class="ph-bold ph-arrow-left"></i></button>
+                <h3>ประวัติค่าใช้จ่ายวันนี้</h3>
+                <button id="refreshBtn"><i class="ph-bold ph-arrow-clockwise"></i></button>
+            </div>
+            <div id="loadingBar"></div>
+            <div class="history-summary">
+                <div class="summary-item income">
+                    <span>รายรับวันนี้</span>
+                    <b id="todayIncome">0</b>
+                    <p>บาท</p>
+                </div>
+                <div class="summary-item expense">
+                    <span>รายจ่ายวันนี้</span>
+                    <b id="todayExpense">0</b>
+                    <p>บาท</p>
+                </div>
+            </div>
+            <div id="historyList"></div>
+        </div>
+    </div>
+    <script src="IE_History.js"></script>
+</body>
+</html>
