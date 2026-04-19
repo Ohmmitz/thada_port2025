@@ -173,9 +173,12 @@ function submitData() {
 // ================= SUMMARY =================
 function showSummary() {
   const html = `
-    <p><b>${tempData.item}</b></p>
-    <p>${tempData.amount} ${tempData.unit}</p>
-    <p>${Number(tempData.value).toLocaleString()} บาท</p>
+    <br>
+    <p>รายละเอียด</p>
+    <h3><b>${tempData.item}</b></h3>
+    <h4>จำนวน ${tempData.amount} ${tempData.unit}</h4>
+    <p>มูลค่า</p>
+    <h3>${Number(tempData.value).toLocaleString()} บาท</h3>
   `;
 
   document.getElementById("summary").innerHTML = html;
@@ -326,8 +329,13 @@ function closeModal() {
 
 // ================= CLOCK =================
 function updateClock() {
+  const now = new Date();
+
+  const date = now.toLocaleDateString('th-TH');
+  const time = now.toLocaleTimeString('th-TH');
+
   document.getElementById("clock").innerText =
-    new Date().toLocaleString('th-TH');
+    `ทำรายการ ณ เวลา ${date} • ${time}`;
 }
 
 setInterval(updateClock, 1000);

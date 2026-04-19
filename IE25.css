@@ -10,6 +10,7 @@ body{
     font-family: "Anuphan", sans-serif;
     font-optical-sizing: auto;
     text-transform: uppercase;
+    box-sizing: border-box;
     background-color: #D1CECE;
     color: #433B3B;
     padding: 80px 80px;
@@ -60,6 +61,7 @@ p{
 
 .container{
     background-color: #F1F0F0;
+    box-sizing: border-box;
     border-radius: 32px;
     padding: 16px;
     width: 400px;
@@ -70,17 +72,10 @@ p{
     width: 60%;
 }
 
-.form {
-    margin: auto;
-    background: #F1F0F0;
-    padding: 20px;
-    border-radius: 12px;
-}
-
 .category-group {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
   margin: 16px 0;
 }
 
@@ -147,21 +142,21 @@ p{
   color: #433B3B;
 }
 
-
 input, select, textarea {
   font-family: "Anuphan", sans-serif;
   font-weight: 300;
   font-style: normal;
   font-size: 16px;
-  width: 92%;
+  width: 100%;
+  box-sizing: border-box;
   margin: 8px 0;
   padding: 8px;
 }
 
 #amountMoney {
-  width: 88%;
-  margin: 8px 0;
-  max-width: 440px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 16px 0;
   font-family: "Anuphan", sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -210,14 +205,14 @@ input, select, textarea {
 }
 
 #clock {
-  margin-top: 4px;
+    margin-top: 4px;
     padding: 8px 16px;
     font-size: 12px;
     text-align: left;
     margin-bottom: 16px;
     background-color: #DFE3FF;
     color: #433B3B;
-    border-radius: 16px;
+    border-radius: 8px;
 }
 
 .modal {
@@ -243,6 +238,7 @@ input, select, textarea {
   padding: 24px;
   width: 300px;
   border-radius: 32px;
+  text-align: center;
 }
 
 .modal-actions {
@@ -277,30 +273,6 @@ input, select, textarea {
 
 .modal-content.success {
   text-align: center;
-}
-
-.modal-content.success h3 {
-  color: #433B3B;
-}
-
-.modal-content.success button {
-    margin: 8px 0 0 0;
-    font-family: "Anuphan", sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 20px;
-    width: 100%;
-    padding: 16px;
-    background: #433B3B;
-    color: #F1F0F0;
-    border: none;
-    border-radius: 16px;
-    cursor: pointer;
-}
-
-.modal-content.success button:hover{
-  background-color: #FF7A0C;
-  color: #433B3B;
 }
 
 
@@ -379,6 +351,7 @@ input, select, textarea {
   justify-content: space-between;
   align-items: end;
   margin-bottom: 20px;
+  box-sizing: border-box;
 }
 
 .history-header button {
@@ -398,11 +371,12 @@ input, select, textarea {
 
 .btn_history {
   margin: 8px 0 0 0;
+  width: 100%;
+  text-align: center;
   font-family: "Anuphan", sans-serif;
   font-weight: 500;
   font-style: normal;
   font-size: 16px;
-  width: 100%;
   padding: 16px;
   background: none;
   border: none;
@@ -410,6 +384,7 @@ input, select, textarea {
   text-decoration: underline;
   cursor: pointer;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .btn_history:hover {
@@ -505,7 +480,8 @@ input, select, textarea {
   font-weight: 300;
   font-style: normal;
   font-size: 16px;
-  width: 92%;
+  width: 100%;
+  box-sizing: border-box;
   margin: 8px 0;
   padding: 8px;
   cursor: not-allowed;
@@ -513,6 +489,7 @@ input, select, textarea {
 }
 
 button:disabled {
+  display: none;
   background-color: #AEA6A6;
   opacity: 0.5;
   cursor: not-allowed;
@@ -635,13 +612,13 @@ button:disabled {
 
     body{
       margin: 0;
-      padding: 32px 32px;
+      padding: 32px;
     }
 
     .container{
-        margin: 0;
-        padding: 16px;
-        width: 94%;
+      margin: 0;
+      padding: 16px;
+      width: 100%;
     }
 
      #amountMoney {
@@ -659,5 +636,9 @@ button:disabled {
       margin-bottom: 1px;
     }
 
-
+    .history-header button {
+      padding: 8px;
+      border-radius: 16px;
+      font-size: 20px;
+    }
 }
