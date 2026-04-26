@@ -14,14 +14,29 @@
             <div class="history-header">
                 <div>
                     <h3>ประวัติค่าใช้จ่าย</h3>
-                    <p>เฉพาะวันนี้เท่านั้น</p>
+                    <div id="billingRange"></div>
+                </div>
+            </div>
+            <div class="budget-box">
+                <div class="budget-header">
+                    <span>งบประมาณเดือนนี้</span>
+                    <span id="budgetPercent">0%</span>
+                </div>
+                <div class="budget-bar">
+                    <div id="budgetProgress"></div>
+                </div>
+                <div class="budget-detail">
+                    ใช้ไป <span id="budgetUsed">0</span> / 
+                    <span id="budgetTotal">0</span> บาท
                 </div>
             </div>
             <div class="history-summary">
                 <div class="onincome">
                     <p>รายรับทั้งเดือน</p>
-                    <h3 id="sumIncomeToday">0</h3>
-                    <p>บาท</p>
+                    <div>
+                        <h3 id="sumIncomeMonth">0</h3>
+                        <p>บาท</p>
+                    </div>
                 </div>
                 <div class="onexpense">
                     <p>รายจ่ายวันนี้</p>
@@ -34,12 +49,15 @@
                     <p>บาท</p>
                 </div>
                 <div class="onbalance">
-                    <p>เงินคงเหลือ</p>
+                    <p>คงเหลือ</p>
                     <h3 id="sumBalance">0</h3>
                     <p>บาท</p>
                 </div>
             </div>
-            <h4>รายการล่าสุด</h4>
+            <div class="space-between">
+                <h4>รายการล่าสุด</h4>
+                <button id="loadMoreBtn" class="load-more"><p>ดูเพิ่มเติม</p></button>
+            </div>
             <div id="loadingBar"></div>
             <div id="historyList"></div>
             <div class="modal-actions">

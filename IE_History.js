@@ -1,5 +1,8 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbyTHy97sczZP2YKB9mGR18GsszuTxIVcphS2FGkZBHyzELUGwBxenrHuvH13X3wb4eByA/exec";
 
+let visibleCount = 3;
+let currentList = [];
+
 // ================= LOADING =================
 function showLoading() {
   document.getElementById("loadingBar").style.display = "block";
@@ -11,6 +14,8 @@ function hideLoading() {
 // ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("refreshBtn").addEventListener("click", loadHistory);
+
+  renderBillingRange(); // 👉 แสดงช่วงรอบบิล
   loadHistory();
 });
 
@@ -47,26 +52,30 @@ function renderTodayList(data) {
 
   const todayList = data.filter(row => {
     const d = parseDate(row.timestamp || row.Timestamp);
-    if (!d) return false;
-
-    return isSameDay(d, today);
+    return d && isSameDay(d, today);
   });
 
-  // sort ล่าสุด
   todayList.sort((a, b) => parseDate(b.timestamp) - parseDate(a.timestamp));
 
-  displayHistory(todayList.slice(0, 7));
+  currentList = todayList;
+  visibleCount = 3; // reset ทุกครั้งโหลดใหม่
+
+  displayHistory();
 }
 
-function displayHistory(list) {
+function displayHistory() {
   const container = document.getElementById("historyList");
+  const loadMoreBtn = document.getElementById("loadMoreBtn");
 
-  if (!list.length) {
+  if (!currentList.length) {
     container.innerHTML = "<p>ยังไม่มีรายการวันนี้</p>";
+    loadMoreBtn.style.display = "none";
     return;
   }
 
-  container.innerHTML = list.map(item => {
+  const visibleItems = currentList.slice(0, visibleCount);
+
+  container.innerHTML = visibleItems.map(item => {
     const isIncome = item.type === "income";
     const value = Number(item.value) || 0;
     const sign = isIncome ? "+" : "-";
@@ -81,17 +90,30 @@ function displayHistory(list) {
       </div>
     `;
   }).join("");
+
+  // 👉 ซ่อนปุ่มถ้าครบแล้ว
+  if (visibleCount >= currentList.length) {
+    loadMoreBtn.style.display = "none";
+  } else {
+    loadMoreBtn.style.display = "block";
+  }
 }
+
+document.getElementById("loadMoreBtn").addEventListener("click", () => {
+  visibleCount += 3;
+  displayHistory();
+});
 
 //
 // ================= SUMMARY =================
 //
 function calculateSummary(data) {
   const today = new Date();
+  const { start, end } = getBillingRange();
 
   let incomeToday = 0;
   let expenseToday = 0;
-  let incomeMonth = 0;
+  let incomeMonth = 0;   // 🔥 รายรับทั้งเดือน (26-25)
   let expenseMonth = 0;
 
   data.forEach(row => {
@@ -101,14 +123,17 @@ function calculateSummary(data) {
     const value = Number(row.value) || 0;
     const isIncome = row.type === "income";
 
-    // today
-    if (isSameDay(d, today)) {
+    const isToday = isSameDay(d, today);
+    const isInBilling = d >= start && d <= end;
+
+    // ✅ TODAY
+    if (isToday) {
       if (isIncome) incomeToday += value;
       else expenseToday += value;
     }
 
-    // month
-    if (isSameMonth(d, today)) {
+    // ✅ รอบบิล (แทนเดือน)
+    if (isInBilling) {
       if (isIncome) incomeMonth += value;
       else expenseMonth += value;
     }
@@ -117,13 +142,21 @@ function calculateSummary(data) {
   const balance = incomeMonth - expenseMonth;
 
   updateSummaryUI(incomeMonth, expenseToday, expenseMonth, balance);
+
+  updateBudgetBar(incomeMonth, expenseMonth);
+
 }
 
-function updateSummaryUI(income, expenseToday, expenseMonth, balance) {
-  animateNumber(document.getElementById("sumIncomeToday"), income);
+function updateSummaryUI(incomeMonth, expenseToday, expenseMonth, balance) {
+
+  animateNumber(document.getElementById("sumIncomeMonth"), incomeMonth);
   animateNumber(document.getElementById("sumExpenseToday"), expenseToday);
   animateNumber(document.getElementById("sumExpenseMonth"), expenseMonth);
-  animateNumber(document.getElementById("sumBalance"), balance);
+
+  const balanceEl = document.getElementById("sumBalance");
+  animateNumber(balanceEl, balance);
+
+  
 }
 
 //
@@ -133,7 +166,7 @@ function easeOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
 
-function animateNumber(el, to, duration = 500) {
+function animateNumber(el, to, duration = 600) {
   const from = getRawNumber(el.innerText);
   const start = performance.now();
 
@@ -173,12 +206,77 @@ function isSameDay(a, b) {
   );
 }
 
-function isSameMonth(a, b) {
-  return (
-    a.getMonth() === b.getMonth() &&
-    a.getFullYear() === b.getFullYear()
-  );
+//
+// 🔥 รอบบิล 26 → 25
+//
+function getBillingRange() {
+  const now = new Date();
+
+  let start, end;
+
+  if (now.getDate() >= 25) {
+    start = new Date(now.getFullYear(), now.getMonth(), 25);
+    end = new Date(now.getFullYear(), now.getMonth() + 1, 24, 23, 59, 59);
+  } else {
+    start = new Date(now.getFullYear(), now.getMonth() - 1, 25);
+    end = new Date(now.getFullYear(), now.getMonth(), 24, 23, 59, 59);
+  }
+
+  return { start, end };
 }
+
+//
+// ================= BILLING RANGE UI =================
+//
+function renderBillingRange() {
+  const { start, end } = getBillingRange();
+
+  const opt = { day: "numeric", month: "short" };
+
+  const text =
+    `${start.toLocaleDateString("th-TH", opt)} - ${end.toLocaleDateString("th-TH", opt)}`;
+
+  const el = document.getElementById("billingRange");
+  if (el) el.innerText = "รอบบัญชี: " + text;
+}
+
+
+function updateBudgetBar(incomeMonth, expenseMonth) {
+
+  const budget = incomeMonth; // 🔥 ใช้รายรับเป็นงบ
+  const used = expenseMonth;
+
+  const percent = budget > 0
+    ? Math.min((used / budget) * 100, 999)
+    : 0;
+
+  const progressEl = document.getElementById("budgetProgress");
+  const percentEl = document.getElementById("budgetPercent");
+
+  // 🔥 animate width
+  requestAnimationFrame(() => {
+    progressEl.style.width = percent + "%";
+  });
+
+  // 🔥 text
+  percentEl.innerText = Math.floor(percent) + "%";
+
+  document.getElementById("budgetUsed").innerText =
+    used.toLocaleString();
+
+  document.getElementById("budgetTotal").innerText =
+    budget.toLocaleString();
+
+  // 🔥 สี dynamic
+  if (percent >= 100) {
+    progressEl.style.background = "linear-gradient(90deg,#FF1744,#D50000)";
+  } else if (percent >= 80) {
+    progressEl.style.background = "linear-gradient(90deg,#FF9100,#FF6D00)";
+  } else {
+    progressEl.style.background = "linear-gradient(90deg,#00C853,#64DD17)";
+  }
+}
+
 
 //
 // ================= NAV =================
@@ -186,3 +284,5 @@ function isSameMonth(a, b) {
 function goBack() {
   window.location.href = "IE25.html";
 }
+
+
