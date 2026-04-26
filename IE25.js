@@ -9,7 +9,7 @@ let isSubmitting = false;
 const categoryMap = {
   income: ["INCO", "INOT", "FMGM" ,"BONU"],
   food: ["COOK", "DINE", "CELE"],
-  utility: ["WATE", "ELEC", "YOUT", "NETX", "AISP"],
+  utility: ["WATE", "ELEC", "YOUT", "NETX", "AISP" ,"FIBE"],
   transport: ["BTST", "CC10", "EMTC"],
   personal: ["TSSP", "WDEQ", "ETCM"],
   self: ["WANT", "SAVE", "DEBT", "MFGM"]
@@ -120,7 +120,9 @@ function applyCodeConfig(code) {
 
 // ================= TYPE =================
 function getTypeFromCode(code) {
-  return ["INCO", "INOT", "FMGM"].includes(code) ? "income" : "expense";
+
+  return codeConfig[code]?.type || "expense";
+
 }
 
 // ================= INPUT MONEY =================
@@ -175,10 +177,12 @@ function showSummary() {
   const html = `
     <br>
     <p>รายละเอียด</p>
-    <h3><b>${tempData.item}</b></h3>
-    <h4>จำนวน ${tempData.amount} ${tempData.unit}</h4>
-    <p>มูลค่า</p>
-    <h3>${Number(tempData.value).toLocaleString()} บาท</h3>
+    <p>ประเภทรายการ : ${tempData.type}</p>
+    <p>รายการ : ${tempData.item}</p>
+    <p>จำนวน :  ${tempData.amount} ${tempData.unit}</p>
+    <p>เส้นทางการเงิน :  ${tempData.from}</p>
+    <p><b>มูลค่า :  ${Number(tempData.value).toLocaleString()} บาท</b></p>
+    <p></p>
   `;
 
   document.getElementById("summary").innerHTML = html;
@@ -335,7 +339,7 @@ function updateClock() {
   const time = now.toLocaleTimeString('th-TH');
 
   document.getElementById("clock").innerText =
-    `ทำรายการ ณ เวลา ${date} • ${time}`;
+    `ทำรายการ ณ วันที่ ${date} เวลา ${time}`;
 }
 
 setInterval(updateClock, 1000);
@@ -377,3 +381,4 @@ function getRawNumber(value) {
   return Number(value.replace(/\D/g, "")) || 0;
 }
 
+console.log(tempData);

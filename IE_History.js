@@ -4,17 +4,13 @@ const API_URL = "https://script.google.com/macros/s/AKfycbyTHy97sczZP2YKB9mGR18G
 function showLoading() {
   document.getElementById("loadingBar").style.display = "block";
 }
-
 function hideLoading() {
   document.getElementById("loadingBar").style.display = "none";
 }
 
 // ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {
-  const refreshBtn = document.getElementById("refreshBtn");
-
-  refreshBtn.addEventListener("click", loadHistory);
-
+  document.getElementById("refreshBtn").addEventListener("click", loadHistory);
   loadHistory();
 });
 
@@ -33,7 +29,8 @@ async function loadHistory() {
       console.warn("ไม่ใช่ JSON");
     }
 
-    renderTodayHistory(data);
+    renderTodayList(data);
+    calculateSummary(data);
 
   } catch (err) {
     console.error(err);
@@ -42,37 +39,37 @@ async function loadHistory() {
   }
 }
 
-function renderTodayHistory(data) {
+//
+// ================= TODAY LIST =================
+//
+function renderTodayList(data) {
   const today = new Date();
 
   const todayList = data.filter(row => {
-    const d = new Date(row.timestamp || row.Timestamp);
+    const d = parseDate(row.timestamp || row.Timestamp);
+    if (!d) return false;
 
-    return (
-      d.getDate() === today.getDate() &&
-      d.getMonth() === today.getMonth() &&
-      d.getFullYear() === today.getFullYear()
-    );
+    return isSameDay(d, today);
   });
 
-  todayList.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  // sort ล่าสุด
+  todayList.sort((a, b) => parseDate(b.timestamp) - parseDate(a.timestamp));
 
-  displayHistory(todayList);
+  displayHistory(todayList.slice(0, 7));
 }
 
 function displayHistory(list) {
   const container = document.getElementById("historyList");
 
-  if (list.length === 0) {
+  if (!list.length) {
     container.innerHTML = "<p>ยังไม่มีรายการวันนี้</p>";
     return;
   }
 
   container.innerHTML = list.map(item => {
-
     const isIncome = item.type === "income";
     const value = Number(item.value) || 0;
-    const sign = isIncome ? "+ " : "- ";
+    const sign = isIncome ? "+" : "-";
 
     return `
       <div class="history-item">
@@ -86,53 +83,58 @@ function displayHistory(list) {
   }).join("");
 }
 
-function renderTodayHistory(data) {
+//
+// ================= SUMMARY =================
+//
+function calculateSummary(data) {
   const today = new Date();
 
-  let incomeTotal = 0;
-  let expenseTotal = 0;
+  let incomeToday = 0;
+  let expenseToday = 0;
+  let incomeMonth = 0;
+  let expenseMonth = 0;
 
-  const todayList = data.filter(row => {
-    const d = new Date(row.timestamp || row.Timestamp);
+  data.forEach(row => {
+    const d = parseDate(row.timestamp || row.Timestamp);
+    if (!d) return;
 
-    const isToday =
-      d.getDate() === today.getDate() &&
-      d.getMonth() === today.getMonth() &&
-      d.getFullYear() === today.getFullYear();
+    const value = Number(row.value) || 0;
+    const isIncome = row.type === "income";
 
-    if (isToday) {
-      const value = Number(row.value) || 0;
-
-      if (row.type === "income") {
-        incomeTotal += value;
-      } else {
-        expenseTotal += value;
-      }
+    // today
+    if (isSameDay(d, today)) {
+      if (isIncome) incomeToday += value;
+      else expenseToday += value;
     }
 
-    return isToday;
+    // month
+    if (isSameMonth(d, today)) {
+      if (isIncome) incomeMonth += value;
+      else expenseMonth += value;
+    }
   });
 
-  todayList.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  const balance = incomeMonth - expenseMonth;
 
-  displayHistory(todayList.slice(0, 5));
-
-  // 🔥 ANIMATE SUMMARY
-  const incomeEl = document.getElementById("todayIncome");
-  const expenseEl = document.getElementById("todayExpense");
-
-  const currentIncome = getRawNumber(incomeEl.innerText);
-  const currentExpense = getRawNumber(expenseEl.innerText);
-
-  animateNumber(incomeEl, currentIncome, incomeTotal, 600, " ");
-  animateNumber(expenseEl, currentExpense, expenseTotal, 600, " ");
+  updateSummaryUI(incomeMonth, expenseToday, expenseMonth, balance);
 }
 
+function updateSummaryUI(income, expenseToday, expenseMonth, balance) {
+  animateNumber(document.getElementById("sumIncomeToday"), income);
+  animateNumber(document.getElementById("sumExpenseToday"), expenseToday);
+  animateNumber(document.getElementById("sumExpenseMonth"), expenseMonth);
+  animateNumber(document.getElementById("sumBalance"), balance);
+}
+
+//
+// ================= ANIMATION =================
+//
 function easeOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
 
-function animateNumber(el, from, to, duration = 600, suffix = " บาท") {
+function animateNumber(el, to, duration = 500) {
+  const from = getRawNumber(el.innerText);
   const start = performance.now();
 
   function frame(now) {
@@ -141,11 +143,9 @@ function animateNumber(el, from, to, duration = 600, suffix = " บาท") {
 
     const current = Math.round(from + (to - from) * eased);
 
-    el.innerText = current.toLocaleString() + suffix;
+    el.innerText = current.toLocaleString();
 
-    if (progress < 1) {
-      requestAnimationFrame(frame);
-    }
+    if (progress < 1) requestAnimationFrame(frame);
   }
 
   requestAnimationFrame(frame);
@@ -155,8 +155,34 @@ function getRawNumber(value) {
   return Number(value.replace(/\D/g, "")) || 0;
 }
 
+//
+// ================= DATE UTILS =================
+//
+function parseDate(val) {
+  if (!val) return null;
 
+  const d = new Date(val);
+  return isNaN(d) ? null : d;
+}
 
+function isSameDay(a, b) {
+  return (
+    a.getDate() === b.getDate() &&
+    a.getMonth() === b.getMonth() &&
+    a.getFullYear() === b.getFullYear()
+  );
+}
+
+function isSameMonth(a, b) {
+  return (
+    a.getMonth() === b.getMonth() &&
+    a.getFullYear() === b.getFullYear()
+  );
+}
+
+//
+// ================= NAV =================
+//
 function goBack() {
   window.location.href = "IE25.html";
 }

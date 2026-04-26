@@ -11,37 +11,37 @@ body{
     font-optical-sizing: auto;
     text-transform: uppercase;
     box-sizing: border-box;
-    background-color: #D1CECE;
+    background-color: #F1F0F0;
     color: #433B3B;
-    padding: 80px 80px;
+    padding: 64px 64px;
 }
 
 h1{
-    font-weight: 900;
+    font-weight: 600;
     font-style: normal;
     font-size: 48px;
 }
 
 h2{
-    font-weight: 800;
+    font-weight: 600;
     font-style: normal;
     font-size: 36px;
 }
 
 h3{
-    font-weight: 700;
+    font-weight: 500;
     font-style: normal;
     font-size: 32px;
 }
 
 h4{
-    font-weight: 600;
+    font-weight: 500;
     font-style: normal;
     font-size: 24px;
 }
 
 h5{
-    font-weight: 500;
+    font-weight: 400;
     font-style: normal;
     font-size: 20px;
 }
@@ -49,21 +49,18 @@ h5{
 h6{
     font-weight: 400;
     font-style: normal;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 p{
-    font-weight: 300;
+    font-weight: 400;
     font-style: normal;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 
 .container{
-    background-color: #F1F0F0;
     box-sizing: border-box;
-    border-radius: 32px;
-    padding: 16px;
     width: 400px;
     margin: 0 auto;
 }
@@ -82,19 +79,18 @@ p{
 .category {
   padding: 8px 16px;
   border-radius: 999px;
-  background: #433B3B;
-  color: #F1F0F0;
+  background: none;
+  border: 1px solid #D1CECE ;
+  color: #433B3B;
   cursor: pointer;
   font-family: "Anuphan", sans-serif;
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
-  font-size: 1rem;
-  border: none;
+  font-size: 16px;
 }
 
 .category.active {
-  background: #FF7A0C;
-  color: #F1F0F0;
+  border: 1px solid #433B3B;
 }
 
 .tag-group {
@@ -110,20 +106,28 @@ p{
 .tag {
   box-sizing: border-box;
   padding: 8px;
-  font-family: "Anuphan", sans-serif;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 16px;
   border: none;
   border-radius: 16px;
-  background: #D1CECE;
+  background: #F1F0F0;
   color: #433B3B;
   cursor: pointer;
   transition: 0.2s;
   display: flex;
   flex-direction: column;
+  
+}
+
+.tag p{
+  display: flex;
+  box-sizing: border-box;
+  height: 40px;
+  font-family: "Anuphan", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  text-align: center;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
 }
 
 .tag img {
@@ -156,14 +160,14 @@ input, select, textarea {
 #amountMoney {
   width: 100%;
   box-sizing: border-box;
-  margin: 16px 0;
+  margin: 8px 0;
   font-family: "Anuphan", sans-serif;
   font-weight: 600;
   font-style: normal;
   font-size: 48px;
   padding-left: 40px;
-  padding: 16px 20px;    
-  border-radius: 12px;
+  padding: 16px 16px;    
+  border-radius: 16px;
   border: 1px solid #ccc;
   outline: none;
   text-align: right;     
@@ -174,7 +178,6 @@ input, select, textarea {
 #amountMoney:focus {
   border: 1px solid #FF7A0C;
   box-shadow: 0 0 0 2px #FF7A0C(0,0,0,0.1);
-
 }
 
 .grid{
@@ -205,14 +208,11 @@ input, select, textarea {
 }
 
 #clock {
-    margin-top: 4px;
-    padding: 8px 16px;
+    padding: 4px 8px;
     font-size: 12px;
     text-align: left;
     margin-bottom: 16px;
-    background-color: #DFE3FF;
-    color: #433B3B;
-    border-radius: 8px;
+    color: #AEA6A6;
 }
 
 .modal {
@@ -229,16 +229,20 @@ input, select, textarea {
 }
 
 .icon_img{
-  width: 80%;
-  height: 80%;
+  width: 40%;
+  height: 40%;
 }
 
 .modal-content {
   background: #F1F0F0;
   padding: 24px;
-  width: 300px;
+  max-width: 320px;
   border-radius: 32px;
   text-align: center;
+}
+
+#summary{
+  text-align: left;
 }
 
 .modal-actions {
@@ -253,22 +257,38 @@ input, select, textarea {
     font-family: "Anuphan", sans-serif;
     font-weight: 500;
     font-style: normal;
-    font-size: 20px;
+    font-size: 16px;
     width: 100%;
     padding: 16px;
-    background: #433B3B;
-    color: #F1F0F0;
-    border: none;
+    background: none;
+    color: #434343;
+    border: 1px solid #D1CECE;
     cursor: pointer;
     transition: all 0.3s;
     border-radius: 16px;
 }
 
+.modal-actions button:hover{
+  border: 1px solid #434343;
+}
+
 .modal .confirm {
-  background: #00E050;
-  color: #433B3B;
+  background: #433B3B;
+  color: #F1F0F0;
   border: none;
   border-radius: 16px;
+}
+
+#back {
+  background: #433B3B;
+  color: #F1F0F0;
+  border: none;
+}
+
+.modal .confirm:hover{
+  background: #FF7A0C;
+  color: #433B3B;
+  border: #FF7A0C;
 }
 
 .modal-content.success {
@@ -306,32 +326,51 @@ input, select, textarea {
   color: #888;
 }
 
-.error {
-  font-family: "Anuphan", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  display: block;
-  font-size: 20px;
-  color: red;
-  margin-top: 4px;
-  min-height: 14px;
-}
-
-.input-error {
-  border: 1px solid #FF1F1F;
-  border-radius: 8px;
-}
 
 .history-box {
   margin-top: 20px;
 }
 
 .history-item {
-  margin-top: 16px;
-  border-radius: 16px;
-  background-color: #fff;
-  padding: 16px;
+  background-color: #f1f1f1;
+  margin: 8px 0 0 0;
+  padding: 16px 0;
   font-size: 16px;
+  border-top: 0.5px solid #AEA6A6;
+}
+
+.history-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.summary-item p {
+  margin-bottom: 4px;
+}
+
+.onincome {
+  grid-column: 1 / span 3;
+  background: #433B3B;
+  border-radius: 16px;
+  padding: 16px;
+  color: #F1F0F0;
+  text-align: center;
+}
+
+.onexpense {
+  border-radius: 16px;
+  padding: 16px;
+  color: #433B3B;
+  border: 1px solid #AEA6A6;
+}
+
+.onbalance {
+  border-radius: 16px;
+  padding: 16px;
+  color: #433B3B;
+  background: #FF7A0C;
 }
 
 .history-income {
@@ -403,6 +442,7 @@ input, select, textarea {
 
 #loadingBar {
   position: relative;
+  margin: 8px 0;
   width: 100%;
   height: 6px;
   border-radius: 999px;
@@ -539,13 +579,6 @@ button:disabled {
   animation: pop 0.2s ease;
 }
 
-.history-summary {
-  display: flex;
-  justify-content: space-between;
-  margin: 12px 0;
-  gap: 10px;
-}
-
 .summary-item {
   flex: 1;
   padding: 12px;
@@ -621,13 +654,9 @@ button:disabled {
       width: 100%;
     }
 
-     #amountMoney {
-      font-size: 1.6rem;
-      padding: 14px;
-    }
 
     .tag{
-      font-size: 10px;
+      font-size: 8px;
     }
 
     .tag img {

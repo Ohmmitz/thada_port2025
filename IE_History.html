@@ -12,27 +12,40 @@
     <div class="container">
         <div class="history-box">
             <div class="history-header">
-                <button onclick="goBack()"><i class="ph-bold ph-arrow-left"></i></button>
-                <div style="text-align: center;">
+                <div>
                     <h3>ประวัติค่าใช้จ่าย</h3>
                     <p>เฉพาะวันนี้เท่านั้น</p>
                 </div>
-                <button id="refreshBtn"><i class="ph-bold ph-arrow-clockwise"></i></button>
             </div>
-            <div id="loadingBar"></div>
             <div class="history-summary">
-                <div class="summary-item income">
-                    <span>รายรับวันนี้</span>
-                    <b id="todayIncome">0</b>
+                <div class="onincome">
+                    <p>รายรับทั้งเดือน</p>
+                    <h3 id="sumIncomeToday">0</h3>
                     <p>บาท</p>
                 </div>
-                <div class="summary-item expense">
-                    <span>รายจ่ายวันนี้</span>
-                    <b id="todayExpense">0</b>
+                <div class="onexpense">
+                    <p>รายจ่ายวันนี้</p>
+                    <h3 id="sumExpenseToday">0</h3>
+                    <p>บาท</p>
+                </div>
+                <div class="onexpense">
+                    <p>รายจ่ายทั้งเดือน</p>
+                    <h3 id="sumExpenseMonth">0</h3>
+                    <p>บาท</p>
+                </div>
+                <div class="onbalance">
+                    <p>เงินคงเหลือ</p>
+                    <h3 id="sumBalance">0</h3>
                     <p>บาท</p>
                 </div>
             </div>
+            <h4>รายการล่าสุด</h4>
+            <div id="loadingBar"></div>
             <div id="historyList"></div>
+            <div class="modal-actions">
+                <button onclick="goBack()" id="back"><i class="ph-bold ph-arrow-left"></i>&nbsp;&nbsp;กลับหน้าแรก</button>
+                <button id="refreshBtn"><i class="ph-bold ph-arrow-clockwise"></i>&nbsp;&nbsp;อัพเดตใหม่</button>
+            </div>
         </div>
     </div>
     <script src="IE_History.js"></script>
