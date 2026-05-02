@@ -304,8 +304,8 @@ input, select, textarea {
 .spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid #F1F0F0;
-  border-top: 4px solid #FF7A0C;
+  border: 8px solid #F1F0F0;
+  border-top: 8px solid #FF7A0C;
   border-radius: 50%;
   margin: 0 auto 10px;
   animation: spin 1s linear infinite;
@@ -337,13 +337,15 @@ input, select, textarea {
   padding: 16px 0;
   font-size: 16px;
   border-top: 0.5px solid #AEA6A6;
+  display: flex;
+  justify-content: space-between;
 }
 
 .history-summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 8px;
+  margin-bottom: 8px;
 }
 
 .summary-item p {
@@ -351,26 +353,41 @@ input, select, textarea {
 }
 
 .onincome {
+  display: flex;
+  flex-direction: column;
   grid-column: 1 / span 3;
   background: #433B3B;
   border-radius: 16px;
   padding: 16px;
   color: #F1F0F0;
   text-align: center;
+  gap: 4px;
 }
 
 .onexpense {
+  display: flex;
+  flex-direction: column;
   border-radius: 16px;
   padding: 12px;
   color: #433B3B;
   border: 1px solid #AEA6A6;
+  gap: 4px;
 }
 
 .onbalance {
+  display: flex;
+  flex-direction: column;
   border-radius: 16px;
   padding: 12px;
   color: #433B3B;
   background: #FF7A0C;
+  gap: 4px;
+}
+
+.timeline-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
 }
 
 .history-income {
@@ -383,6 +400,25 @@ input, select, textarea {
   color: #dc2626; 
   font-weight: 600;
   font-size: 20px;
+}
+
+.category-summary{
+  margin-bottom: 8px;
+}
+
+#categoryList{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.category-item{
+  border: 1px solid #AEA6A6;;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .history-header {
@@ -488,6 +524,7 @@ input, select, textarea {
   font-size: 12px;
   cursor: pointer;
   transition: 0.2s;
+  display: flex;
 }
 
 .load-more:hover {

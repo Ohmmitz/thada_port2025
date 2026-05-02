@@ -8,9 +8,9 @@ let isSubmitting = false;
 // ================= CATEGORY =================
 const categoryMap = {
   income: ["INCO", "INOT", "FMGM" ,"BONU"],
-  food: ["COOK", "DINE", "CELE"],
+  food: ["COOK", "DINE", "CELE", "DRNK"],
   utility: ["WATE", "ELEC", "YOUT", "NETX", "AISP" ,"FIBE"],
-  transport: ["BTST", "CC10", "EMTC"],
+  transport: ["BTST", "GRAB", "TAXI", "BUST", "CC10"],
   personal: ["TSSP", "WDEQ", "ETCM"],
   self: ["WANT", "SAVE", "DEBT", "MFGM"]
 };
@@ -29,8 +29,12 @@ const codeConfig = {
   YOUT: { type: "expense", value: 199, item: "จ่ายค่า Youtube premium", from: "Youtube", amount: "1", unit:"เดือน"},
   NETX: { type: "expense", value: 419, item: "จ่ายค่า Netflix", from: "Netflix", amount: "1", unit:"เดือน"},
   AISP: { type: "expense", value: 641, item: "จ่ายค่าเบอร์มือถือรายเดือน", from: "AIS", amount: "1", unit:"เดือน"},
+  FIBE: { type: "expense", value: 535, item: "จ่ายเน็ตบ้านรายเดือน", from: "AIS", amount: "1", unit:"เดือน"},
   BTST: { type: "expense", value: 1190, item: "เติมเงินเที่ยวเดิน (BTS)", from: "Rabbit Reward", amount: "1", unit:"เดือน"},
-  CC10: { type: "expense" },
+  GRAB: { type: "expense", amount: "1", unit:"เที่ยว"},
+  BUST: { type: "expense", value: 8, item: "นั่งรถเมล์", amount: "1", unit:"เที่ยว"},
+  CC10: { type: "expense", value: 10, item: "นั่งรถกระป๋อง", amount: "1", unit:"เที่ยว"},
+  TAXI: { type: "expense", amount: "1", unit:"เที่ยว"},
   TSSP: { type: "expense" },
   WDEQ: { type: "expense" },
   ETCM: { type: "expense" },
@@ -38,7 +42,6 @@ const codeConfig = {
   SAVE: { type: "expense" },
   DEBT: { type: "expense" , item: "จ่ายหนี้", },
   MFGM: { type: "expense" },
-  EMTC: { type: "expense" }
 };
 
 // ================= INIT =================
