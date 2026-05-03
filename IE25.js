@@ -11,7 +11,7 @@ const categoryMap = {
   food: ["COOK", "DINE", "CELE", "DRNK"],
   utility: ["WATE", "ELEC", "YOUT", "NETX", "AISP" ,"FIBE"],
   transport: ["BTST", "GRAB", "TAXI", "BUST", "CC10"],
-  personal: ["TSSP", "WDEQ", "ETCM"],
+  personal: ["TSSP", "WDEQ", "ETCM" ,"COEQ" , "SKIN"],
   self: ["WANT", "SAVE", "DEBT", "MFGM"]
 };
 
@@ -38,11 +38,185 @@ const codeConfig = {
   TSSP: { type: "expense" },
   WDEQ: { type: "expense" },
   ETCM: { type: "expense" },
+  COEQ: { type: "expense" },
+  SKIN: { type: "expense" },
   WANT: { type: "expense" },
   SAVE: { type: "expense" },
   DEBT: { type: "expense" , item: "จ่ายหนี้", },
   MFGM: { type: "expense" },
 };
+
+// ================= UNIT MAP =================
+const unitMap = {
+
+  // ================= INCOME =================
+  income: [
+    "เดือน",
+    "โบนัส",
+    "ครั้ง",
+    "โปรเจกต์",
+    "งาน",
+    "ดีล",
+    "คอมมิชชั่น",
+    "วัน",
+    "ชั่วโมง",
+    "สัปดาห์",
+    "งวด",
+    "คน",
+    "คอร์ส",
+    "ออเดอร์",
+    "รอบ",
+    "สัญญา"
+  ],
+
+  // ================= FOOD =================
+  food: [
+    "มื้อ",
+    "จาน",
+    "ชาม",
+    "ชุด",
+    "กล่อง",
+    "แก้ว",
+    "ขวด",
+    "กระป๋อง",
+    "ถุง",
+    "ห่อ",
+    "แพ็ก",
+    "ชิ้น",
+    "คำ",
+    "ไม้",
+    "ลูก",
+    "ถ้วย",
+    "หลอด",
+    "ซอง",
+    "กิโลกรัม",
+    "กรัม",
+    "ลิตร",
+    "มิลลิลิตร",
+    "ฟอง",
+    "เสิร์ฟ"
+  ],
+
+  // ================= UTILITY =================
+  utility: [
+    "เดือน",
+    "งวด",
+    "บิล",
+    "แพ็กเกจ",
+    "ชั่วโมง",
+    "วัน",
+    "ปี",
+    "เครื่อง",
+    "บัญชี",
+    "ครั้ง",
+    "รอบ",
+    "GB",
+    "Mbps",
+    "kWh",
+    "คิว",
+    "ยูนิต"
+  ],
+
+  // ================= TRANSPORT =================
+  transport: [
+    "เที่ยว",
+    "รอบ",
+    "วัน",
+    "เดือน",
+    "ปี",
+    "ครั้ง",
+    "คัน",
+    "สาย",
+    "สถานี",
+    "กิโลเมตร",
+    "ลิตร",
+    "ชม.",
+    "ใบ",
+    "เที่ยวบิน"
+  ],
+
+  // ================= PERSONAL =================
+  personal: [
+    "ชิ้น",
+    "ชุด",
+    "แพ็ก",
+    "คู่",
+    "ใบ",
+    "อัน",
+    "เครื่อง",
+    "ครั้ง",
+    "กล่อง",
+    "ขวด",
+    "หลอด",
+    "ตลับ",
+    "แท่ง",
+    "ก้อน",
+    "ผืน",
+    "เมตร",
+    "เล่ม",
+    "ตัว",
+    "แพ็กเกจ"
+  ],
+
+  // ================= SELF =================
+  self: [
+    "เดือน",
+    "ปี",
+    "งวด",
+    "ครั้ง",
+    "คอร์ส",
+    "คลาส",
+    "โปรแกรม",
+    "ชั่วโมง",
+    "วัน",
+    "สัปดาห์",
+    "คน",
+    "เล่ม",
+    "บัญชี",
+    "กองทุน",
+    "หุ้น",
+    "เหรียญ"
+  ]
+
+};
+
+// ================= GET CATEGORY =================
+function getCategoryFromCode(code) {
+
+  return Object.entries(categoryMap)
+    .find(([_, codes]) => codes.includes(code))
+    ?.[0];
+
+}
+
+// ================= RENDER UNIT =================
+function renderUnitOptions(code) {
+
+  const unitSelect =
+    document.getElementById("unit");
+
+  const category =
+    getCategoryFromCode(code);
+
+  const units =
+    unitMap[category] || [];
+
+  unitSelect.innerHTML = `
+    <option value="">
+      เลือกหน่วย
+    </option>
+
+    ${units.map(unit => `
+      <option value="${unit}">
+        ${unit}
+      </option>
+    `).join("")}
+
+    <option value="other">
+      อื่นๆ
+    </option>
+  `;
+}
 
 // ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {
@@ -98,24 +272,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ================= APPLY CONFIG =================
 function applyCodeConfig(code) {
+
   const config = codeConfig[code];
   if (!config) return;
 
-  const input = document.getElementById("amountMoney");
+  // 🔥 render unit ตาม category
+  renderUnitOptions(code);
 
-  const current = getRawNumber(input.value);
-  const target = config.value || 0;
+  const input =
+    document.getElementById("amountMoney");
 
-  // 👉 animate เท่านั้น (ห้าม set input.value ซ้ำ)
+  const current =
+    getRawNumber(input.value);
+
+  const target =
+    config.value || 0;
+
   animateValue(input, current, target);
 
-  // item auto fill
-  document.getElementById("item").value = config.item || "";
+  document.getElementById("item").value =
+    config.item || "";
 
-  // optional auto fill (from / amount / unit)
-  document.getElementById("from").value = config.from || "";
-  document.getElementById("amount").value = config.amount || "";
-  document.getElementById("unit").value = config.unit || "";
+  document.getElementById("from").value =
+    config.from || "";
+
+  document.getElementById("amount").value =
+    config.amount || "";
+
+  // 🔥 set unit auto
+  document.getElementById("unit").value =
+    config.unit || "";
 
   input.focus();
 }
@@ -383,5 +569,7 @@ function animateValue(input, from, to, duration = 400) {
 function getRawNumber(value) {
   return Number(value.replace(/\D/g, "")) || 0;
 }
+
+
 
 console.log(tempData);

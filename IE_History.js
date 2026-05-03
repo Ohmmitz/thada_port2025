@@ -2,6 +2,7 @@ const API_URL = "https://script.google.com/macros/s/AKfycbyTHy97sczZP2YKB9mGR18G
 
 let visibleCount = 3;
 let groupedTimeline = {};
+let categoryChart;
 
 // ================= CATEGORY =================
 const categoryMap = {
@@ -9,17 +10,47 @@ const categoryMap = {
   food: ["COOK", "DINE", "CELE", "DRNK"],
   utility: ["WATE", "ELEC", "YOUT", "NETX", "AISP", "FIBE"],
   transport: ["BTST", "GRAB", "TAXI", "BUST", "CC10"],
-  personal: ["TSSP", "WDEQ", "ETCM"],
+  personal: ["TSSP", "WDEQ", "ETCM", "COEQ"],
   self: ["WANT", "SAVE", "DEBT", "MFGM"]
 };
 
 // ================= LOADING =================
 function showLoading() {
+
   document.getElementById("loadingBar").style.display = "block";
+
+  // skeleton show
+  document.getElementById("budgetSkeleton")
+    ?.classList.remove("hidden");
+
+  document.getElementById("pieSkeleton")
+    ?.classList.remove("hidden");
+
+  // content hide
+  document.getElementById("budgetContent")
+    ?.classList.add("hidden");
+
+  document.getElementById("pieContent")
+    ?.classList.add("hidden");
 }
 
 function hideLoading() {
+
   document.getElementById("loadingBar").style.display = "none";
+
+  // skeleton hide
+  document.getElementById("budgetSkeleton")
+    ?.classList.add("hidden");
+
+  document.getElementById("pieSkeleton")
+    ?.classList.add("hidden");
+
+  // content show
+  document.getElementById("budgetContent")
+    ?.classList.remove("hidden");
+
+  document.getElementById("pieContent")
+    ?.classList.remove("hidden");
 }
 
 // ================= INIT =================
@@ -63,6 +94,8 @@ async function loadHistory() {
 
     calculateSummary(data);
 
+    hideLoading();
+
     calculateCategorySummary(data);
 
   } catch (err) {
@@ -71,7 +104,6 @@ async function loadHistory() {
 
   } finally {
 
-    hideLoading();
 
   }
 
@@ -122,7 +154,6 @@ function renderTimeline(data) {
     older: olderList
   };
 
-  // 🔥 เริ่มต้นแสดงเฉพาะวันนี้ 3 รายการ
   visibleCount = 3;
 
   displayHistory();
@@ -135,15 +166,15 @@ function displayHistory() {
 
   container.innerHTML = "";
 
-  // 🔥 TODAY
+  // TODAY
   renderSection(
     container,
     "วันนี้",
     groupedTimeline.today.slice(0, visibleCount),
-    groupedTimeline.today // ✅ ส่ง full list
+    groupedTimeline.today
   );
 
-  // 🔥 ถ้าเกินวันนี้ → เริ่มแสดงเมื่อวาน
+  // YESTERDAY
   if (visibleCount > groupedTimeline.today.length) {
 
     const remain =
@@ -153,10 +184,10 @@ function displayHistory() {
       container,
       "เมื่อวาน",
       groupedTimeline.yesterday.slice(0, remain),
-      groupedTimeline.yesterday // ✅ full list
+      groupedTimeline.yesterday
     );
 
-    // 🔥 ถ้าเกินเมื่อวาน → แสดงย้อนหลัง
+    // OLDER
     if (
       remain >
       groupedTimeline.yesterday.length
@@ -169,7 +200,7 @@ function displayHistory() {
         container,
         "ย้อนหลัง",
         groupedTimeline.older.slice(0, olderRemain),
-        groupedTimeline.older // ✅ full list
+        groupedTimeline.older
       );
 
     }
@@ -179,24 +210,18 @@ function displayHistory() {
   updateLoadMoreButton();
 }
 
-
 // ================= SECTION =================
-
 function renderSection(container, title, list, fullList = []) {
 
   if (!list.length) return;
 
-  // 🔥 ใช้ fullList คำนวณยอดรวมทั้งหมดของวัน
   let sectionExpense = 0;
-  let sectionIncome = 0;
 
   fullList.forEach(item => {
 
     const value = Number(item.value) || 0;
 
-    if (item.type === "income") {
-      sectionIncome += value;
-    } else {
+    if (item.type !== "income") {
       sectionExpense += value;
     }
 
@@ -252,12 +277,15 @@ function renderSection(container, title, list, fullList = []) {
             <div>
               <h4>${item.item || "-"}</h4>
             </div>
+
             <div>
               เส้นทางการเงิน : ${item.from || "-"}
             </div>
+
             <div>
               เวลา : ${time}
             </div>
+
           </div>
 
           <div class="history-bottom">
@@ -282,6 +310,7 @@ function renderSection(container, title, list, fullList = []) {
 
   container.appendChild(section);
 }
+
 // ================= LOAD MORE =================
 function updateLoadMoreButton() {
 
@@ -305,7 +334,6 @@ function calculateSummary(data) {
 
   const { start, end } = getBillingRange();
 
-  let expenseToday = 0;
   let incomeMonth = 0;
   let expenseMonth = 0;
 
@@ -319,22 +347,10 @@ function calculateSummary(data) {
 
     const isIncome = row.type === "income";
 
-    const isToday = isSameDay(d, today);
-
     const isInBilling =
       d >= start &&
       d <= end;
 
-    // TODAY
-    if (isToday) {
-
-      if (!isIncome) {
-        expenseToday += value;
-      }
-
-    }
-
-    // BILLING
     if (isInBilling) {
 
       if (isIncome) {
@@ -349,53 +365,18 @@ function calculateSummary(data) {
 
   const balance = incomeMonth - expenseMonth;
 
-  updateSummaryUI(
+  updateBudgetBar(
     incomeMonth,
-    expenseToday,
     expenseMonth,
     balance
   );
-
-  updateBudgetBar(
-    incomeMonth,
-    expenseMonth
-  );
-}
-
-// ================= SUMMARY UI =================
-function updateSummaryUI(
-  incomeMonth,
-  expenseToday,
-  expenseMonth,
-  balance
-) {
-
-  animateNumber(
-    document.getElementById("sumIncomeMonth"),
-    incomeMonth
-  );
-
-  animateNumber(
-    document.getElementById("sumExpenseToday"),
-    expenseToday
-  );
-
-  animateNumber(
-    document.getElementById("sumExpenseMonth"),
-    expenseMonth
-  );
-
-  const balanceEl =
-    document.getElementById("sumBalance");
-
-  animateNumber(balanceEl, balance);
-
 }
 
 // ================= BUDGET BAR =================
 function updateBudgetBar(
   incomeMonth,
-  expenseMonth
+  expenseMonth,
+  balance
 ) {
 
   const budget = incomeMonth;
@@ -417,7 +398,7 @@ function updateBudgetBar(
   });
 
   percentEl.innerText =
-    Math.floor(percent) + "%";
+    "ใช้ไป " + Math.floor(percent) + "%";
 
   document.getElementById("budgetUsed").innerText =
     used.toLocaleString();
@@ -425,6 +406,17 @@ function updateBudgetBar(
   document.getElementById("budgetTotal").innerText =
     budget.toLocaleString();
 
+  // 🔥 NEW
+  document.getElementById("sumBalance").innerText =
+    balance.toLocaleString();
+
+
+    updateBudgetWarning(
+      percent,
+      balance
+    );
+
+  // 🔥 COLOR
   if (percent >= 100) {
 
     progressEl.style.background =
@@ -441,6 +433,98 @@ function updateBudgetBar(
       "linear-gradient(90deg,#00C853,#64DD17)";
 
   }
+
+}
+
+// ================= WARNING =================
+
+function updateBudgetWarning(
+  percent,
+  balance
+){
+
+  const box =
+    document.getElementById(
+      "budgetWarning"
+    );
+
+  if(!box) return;
+
+  const icon =
+    document.getElementById(
+      "warningIcon"
+    );
+
+  const title =
+    document.getElementById(
+      "warningTitle"
+    );
+
+  const text =
+    document.getElementById(
+      "warningText"
+    );
+
+  box.classList.remove(
+    "safe",
+    "alert",
+    "danger",
+    "hidden"
+  );
+
+  box.classList.remove("animate");
+  void box.offsetWidth;
+  box.classList.add("animate");
+
+  // ================= SAFE =================
+
+  if(percent < 70){
+
+    box.classList.add("safe");
+
+    icon.innerText = "✅";
+
+    title.innerText =
+      "รายจ่ายยังสมดุล";
+
+    text.innerText =
+      `ใช้ไป ${Math.floor(percent)}% ของรายรับเดือนนี้`;
+
+  }
+
+  // ================= ALERT =================
+
+  else if(percent < 100){
+
+    box.classList.add("alert");
+
+    icon.innerText = "⚠️";
+
+    title.innerText =
+      "รายจ่ายใกล้เท่ารายรับ";
+
+    text.innerText =
+      `ใช้ไปแล้ว ${Math.floor(percent)}% ของรายรับเดือนนี้`;
+
+  }
+
+  // ================= DANGER =================
+
+  else{
+
+    box.classList.add("danger");
+
+    icon.innerText = "🚨";
+
+    title.innerText =
+      "รายจ่ายเกินรายรับแล้ว";
+
+    text.innerText =
+      `ติดลบ ${Math.abs(balance).toLocaleString()} บาท`;
+
+  }
+
+
 
 }
 
@@ -494,11 +578,20 @@ function renderCategorySummary(totals) {
 
   const labels = {
     food: "ค่าอาหาร",
-    utility: "ค่าสาธารณูปโภค",
+    utility: "สาธารณูปโภค",
     transport: "ค่าเดินทาง",
-    personal: "ค่าของใช้ส่วนตัว",
+    personal: "ของใช้ส่วนตัว",
     self: "เกี่ยวกับตัวเอง"
   };
+
+  const colors = {
+    food: "#FF7A0C",
+    utility: "#ff790cea",
+    transport: "#ff790ca9",
+    personal: "#ff790c7d",
+    self: "#ff790c4a"
+  };
+
 
   const sorted = Object.entries(totals)
     .filter(([k, v]) =>
@@ -506,25 +599,75 @@ function renderCategorySummary(totals) {
     )
     .sort((a, b) => b[1] - a[1]);
 
+  // ================= CATEGORY LIST =================
   container.innerHTML = sorted.map(
     ([key, value]) => `
 
       <div class="category-item">
-
-        <p class="category-name">
-          ${labels[key] || key}
-        </p>
-
-        <h3 class="category-value">
+        <div class="category-left">
+          <div 
+            class="category-dot" style="background:${colors[key]}"></div>
+            <div class="category-name">${labels[key] || key}</div>
+        </div>
+        <br>  
+        <h3>
           ${value.toLocaleString()}
         </h3>
-
         <p>บาท</p>
-
       </div>
 
     `
   ).join("");
+
+  // ================= PIE CHART =================
+  const ctx =
+    document
+      .getElementById("categoryChart");
+
+  if (!ctx) return;
+
+  if (categoryChart) {
+    categoryChart.destroy();
+  }
+
+  categoryChart = new Chart(ctx, {
+
+    type: "pie",
+
+    data: {
+
+      labels: sorted.map(
+        ([key]) => labels[key]
+      ),
+
+      datasets: [{
+        data: sorted.map(
+          ([_, value]) => value
+        ),
+
+        backgroundColor: sorted.map(
+          ([key]) => colors[key]
+        ),
+
+        borderWidth: 0
+      }]
+    },
+
+    options: {
+
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: "72%",
+
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+
+    }
+
+  });
 
 }
 

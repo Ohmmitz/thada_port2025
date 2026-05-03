@@ -16,46 +16,66 @@
                     <h3>ประวัติค่าใช้จ่าย</h3>
                     <div id="billingRange"></div>
                 </div>
+                <div class="warning-box hidden" id="budgetWarning">
+                    <div class="warning-icon" id="warningIcon">
+                        ⚠️
+                    </div>
+                    <div class="warning-content">
+                        <h5 id="warningTitle">ระวังค่าใช้จ่าย</h5>
+                        <p id="warningText">คุณกำลังใช้จ่ายใกล้เกินงบประมาณแล้ว</p>
+                    </div>
+                </div>
             </div>
-            <div class="budget-box">
+            <div class="budget-box skeleton-card" id="budgetSkeleton">
+                <div class="skeleton skeleton-title"></div>
+                <div class="skeleton skeleton-bar"></div>
+                <div class="skeleton skeleton-text"></div>
+                <div class="skeleton skeleton-text short"></div>
+            </div>
+            <div class="budget-box hidden" id="budgetContent">
                 <div class="budget-header">
                     <span>งบประมาณเดือนนี้</span>
-                    <span id="budgetPercent">0%</span>
+                    <span id="budgetPercent">ใช้ไป 0%</span>
                 </div>
                 <div class="budget-bar">
                     <div id="budgetProgress"></div>
                 </div>
                 <div class="budget-detail">
-                    ใช้ไป <span id="budgetUsed">0</span> / 
-                    <span id="budgetTotal">0</span> บาท
-                </div>
-            </div>
-            <div class="history-summary">
-                <div class="onincome">
-                    <p>รายรับทั้งเดือน</p>
                     <div>
-                        <h3 id="sumIncomeMonth">0</h3>
+                        <p>ใช้ไป</p>
+                        <b id="budgetUsed">0</b>
+                        <p>บาท</p>
+                    </div>
+                    <div>
+                        <p>รายรับทั้งหมด</p>
+                        <b id="budgetTotal">0</b>
+                        <p>บาท</p>
+                    </div>
+                    <div>
+                        <p>คงเหลือ</p>
+                        <b id="sumBalance">0</b>
                         <p>บาท</p>
                     </div>
                 </div>
-                <div class="onexpense">
-                    <p>ค่าใช้จ่ายวันนี้</p>
-                    <h3 id="sumExpenseToday">0</h3>
-                    <p>บาท</p>
-                </div>
-                <div class="onexpense">
-                    <p>ใช้จ่ายทั้งเดือน</p>
-                    <h3 id="sumExpenseMonth">0</h3>
-                    <p>บาท</p>
-                </div>
-                <div class="onbalance">
-                    <p>เงินคงเหลือ</p>
-                    <h3 id="sumBalance">0</h3>
-                    <p>บาท</p>
-                </div>
             </div>
             <div class="category-summary">
-                <div id="categoryList"></div>
+                <div id="pieSkeleton">
+                    <div class="skeleton skeleton-circle"></div>
+                    <div class="skeleton-list">
+                    <div class="skeleton skeleton-item"></div>
+                    <div class="skeleton skeleton-item"></div>
+                    <div class="skeleton skeleton-item"></div>
+                    <div class="skeleton skeleton-item"></div>
+                    </div>
+                </div>
+                <div id="pieContent" class="hidden">
+                    <div class="container">
+                        <div class="chart-wrapper">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+                    <div id="categoryList"></div>
+                </div>
             </div>
             <div class="space-between">
                 <h4>รายการล่าสุด</h4>
@@ -69,6 +89,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="IE_History.js"></script>
 </body>
 </html>
