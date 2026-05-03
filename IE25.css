@@ -145,13 +145,12 @@ p{
 
 .tag:hover {
     background: #433B3B;
-    border: 1px solid #433B3B;
     color: #F1F0F0;
 }
 
 .tag.active {
     background:#ffebe6;
-    border: 1px solid #ffb69d;
+    box-shadow: inset 0 0 0 1px #ffb69d;
     color: #433B3B;
 }
 
