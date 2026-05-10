@@ -363,19 +363,37 @@ function submitData() {
 
 // ================= SUMMARY =================
 function showSummary() {
-  const html = `
-    <br>
-    <p>รายละเอียด</p>
-    <p>ประเภทรายการ : ${tempData.type}</p>
-    <p>รายการ : ${tempData.item}</p>
-    <p>จำนวน :  ${tempData.amount} ${tempData.unit}</p>
-    <p>เส้นทางการเงิน :  ${tempData.from}</p>
-    <p><b>มูลค่า :  ${Number(tempData.value).toLocaleString()} บาท</b></p>
-    <p></p>
-  `;
 
-  document.getElementById("summary").innerHTML = html;
-  document.getElementById("confirmModal").style.display = "flex";
+  document.getElementById(
+    "summaryType"
+  ).innerText =
+    tempData.type;
+
+  document.getElementById(
+    "summaryItem"
+  ).innerText =
+    tempData.item;
+
+  document.getElementById(
+    "summaryAmount"
+  ).innerText =
+    `${tempData.amount} ${tempData.unit}`;
+
+  document.getElementById(
+    "summaryFrom"
+  ).innerText =
+    tempData.from;
+
+  document.getElementById(
+    "summaryValue"
+  ).innerText =
+    `${Number(tempData.value)
+      .toLocaleString()} บาท`;
+
+  document.getElementById(
+    "confirmModal"
+  ).style.display = "flex";
+
 }
 
 // ================= CONFIRM =================

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Anuphan:wght@100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap');
 
 /* ================= RESET ================= */
 
@@ -162,24 +163,43 @@ textarea {
     font-family: "Anuphan", sans-serif;
     font-size: 16px;
     width: 100%;
+    height: 40px;
     margin: 8px 0;
-    padding: 8px;
+    padding: 8px 0;
+    outline: none;
+    background-color: #F1F0F0;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #D1CECE;
+    text-decoration: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border: none;
+  border-bottom: 1px solid #FF7A0C;
 }
 
 .form-input:disabled {
     cursor: not-allowed;
     opacity: 0.25;
+    color: #433B3B;
 }
 
 #amountMoney {
     width: 100%;
+    height: 80px;
     margin: 8px 0;
-    font-family: "Anuphan", sans-serif;
-    font-weight: 500;
-    font-size: 48px;
-    padding: 16px;
-    border-radius: 16px;
-    border: 1px solid #ccc;
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 72px;
+    padding: 0;
+    background-color: #F1F0F0;
+    border: none;
+    color: #FF7A0C;
     outline: none;
     text-align: right;
     letter-spacing: 1px;
@@ -187,7 +207,7 @@ textarea {
 }
 
 #amountMoney:focus {
-    border: 1px solid #FF7A0C;
+    border-bottom: 1px solid #FF7A0C;
 }
 
 .money-field {
@@ -197,11 +217,15 @@ textarea {
 
 .currency {
     position: absolute;
-    left: 16px;
-    top: 50%;
+    left: 0;
+    top: 40%;
     transform: translateY(-50%);
-    font-size: 20px;
-    color: #888;
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 24px;
+    color: #FF7A0C;
 }
 
 /* ================= BUTTON ================= */
@@ -218,6 +242,7 @@ textarea {
     border-radius: 16px;
     cursor: pointer;
     transition: 0.3s;
+    text-decoration: none;
 }
 
 .submit:hover{
@@ -241,11 +266,11 @@ button:disabled {
     color: #433B3B;
     text-decoration: underline;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .btn_history:hover {
     color: #FF7A0C;
-    text-decoration: none;
 }
 
 .load-more {
@@ -349,10 +374,7 @@ button:disabled {
 }
 
 .budget-detail div{
-    background: #F8F7F7;
-    border-radius: 16px;
-    padding: 16px;
-    border: 1px solid #ECE8E8;
+    padding: 0;
 }
 
 .budget-detail b{
@@ -403,16 +425,12 @@ button:disabled {
     display:flex;
     flex-direction: column;
     justify-content:space-between;
-    background: #F8F7F7;
-    border-radius:16px;
-    padding:12px;
-    border:1px solid #E4E1E1;
 }
 
 .category-left{
     display:flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
 }
 
 .category-dot{
@@ -446,6 +464,46 @@ button:disabled {
     text-align: center;
 }
 
+.checking{
+  width: 80%;
+}
+
+/* ================= SUMMARY ================= */
+
+.summary-box{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:16px;
+}
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.summary-row span{
+  opacity:.7;
+}
+
+.summary-row b{
+  font-weight:500;
+}
+
+.summary-total{
+  border-top: 1px solid #E4E1E1;
+  margin-top: 16px;
+  padding: 8px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:start;
+}
+
+.summary-total span{
+  opacity:.7;
+}
+
 .modal-actions {
     display: flex;
     justify-content: space-between;
@@ -462,6 +520,12 @@ button:disabled {
     border: 1px solid #D1CECE;
     border-radius: 16px;
     cursor: pointer;
+    text-decoration: none;
+}
+
+.modal-actions .confirm{
+  background: #433B3B;
+  color: #F1F0F0;
 }
 
 
@@ -716,6 +780,70 @@ button:disabled {
   margin: 0 auto;
 }
 
+/* ================= spining ================= */
+
+.loader {
+  color: #433B3B;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  position: relative;
+  text-indent: -9999em;
+  animation: mulShdSpin 1.3s infinite linear;
+  transform: translateZ(0);
+  margin: 0 auto 24px auto;
+}
+
+@keyframes mulShdSpin {
+  0%,
+  100% {
+    box-shadow: 0 -3em 0 0.2em, 
+    2em -2em 0 0em, 3em 0 0 -1em, 
+    2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 -1em, -3em 0 0 -1em, 
+    -2em -2em 0 0;
+  }
+  12.5% {
+    box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 
+    3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 -1em, -3em 0 0 -1em, 
+    -2em -2em 0 -1em;
+  }
+  25% {
+    box-shadow: 0 -3em 0 -0.5em, 
+    2em -2em 0 0, 3em 0 0 0.2em, 
+    2em 2em 0 0, 0 3em 0 -1em, 
+    -2em 2em 0 -1em, -3em 0 0 -1em, 
+    -2em -2em 0 -1em;
+  }
+  37.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, 
+     -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  50% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, 
+     -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+  }
+  62.5% {
+    box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em,
+     3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, 
+     -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+  }
+  75% {
+    box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 
+    3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+  }
+  87.5% {
+    box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 
+    3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, 
+    -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+  }
+}
+  
 
 /* ================= SKELETON BASE ================= */
 
@@ -987,7 +1115,7 @@ button:disabled {
 @media (max-width: 600px){
 
     body{
-        padding: 56px 16px 32px;
+        padding: 32px 16px 32px;
     }
 
     .container{

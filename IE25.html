@@ -82,20 +82,42 @@
     <script src="IE25.js"></script>
     </body>
     <div id="confirmModal" class="modal">
-        <div class="modal-content">
-            <img src="Assets/app icon/icon_order.png" class="icon_img">
+        <div class="modal-content checking">
+            <img src="Assets/app icon/icon_order.png" class="icon_img"><br>
             <h3>ตรวจสอบข้อมูล</h3>
             <p>ก่อนยืนยันส่งข้อมูลเข้าระบบ</p>
-            <div id="summary"></div>
+            <div class="summary-box">
+                <div class="summary-row">
+                    <span>ประเภทรายการ</span>
+                    <b id="summaryType">-</b>
+                </div>
+                <div class="summary-row">
+                    <span>รายการ</span>
+                    <b id="summaryItem">-</b>
+                </div>
+                <div class="summary-row">
+                    <span>จำนวน</span>
+                    <b id="summaryAmount">-</b>
+                </div>
+                <div class="summary-row">
+                    <span>เส้นทางการเงิน</span>
+                    <b id="summaryFrom">-</b>
+                </div>
+                <div class="summary-total">
+                    <span>มูลค่า</span>
+                    <h2 id="summaryValue">0 บาท</h2>
+                </div>
+            </div>
             <div class="modal-actions">
-            <button onclick="closeModal()">แก้ไข</button>
-            <button class="confirm" onclick="confirmSubmit()">ยืนยัน</button>
+                <button onclick="closeModal()"><i class="ph-bold ph-pencil-simple-line"></i>&nbsp;แก้ไข</button>
+                <button class="confirm" onclick="confirmSubmit()"><i class="ph-bold ph-paper-plane-right"></i>&nbsp;ยืนยัน</button>
             </div>
         </div>
     </div>
     <div id="loadingModal" class="modal">
         <div class="modal-content loading">
-            <div class="spinner"></div>
+            <div class="loader">
+        </div>
             <p id="loadingText">กำลังบันทึกข้อมูล...</p>
         </div>
     </div>
