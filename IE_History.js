@@ -279,11 +279,11 @@ function renderSection(container, title, list, fullList = []) {
             </div>
 
             <div>
-              เส้นทางการเงิน : ${item.from || "-"}
+              <p>${item.from || "-"}</p>
             </div>
 
             <div>
-              เวลา : ${time}
+              <p>เวลา : ${time}</p>
             </div>
 
           </div>

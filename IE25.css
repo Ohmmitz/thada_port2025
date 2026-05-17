@@ -199,6 +199,7 @@ textarea:focus{
     padding: 0;
     background-color: #F1F0F0;
     border: none;
+    border-bottom: 1px solid #D1CECE;
     color: #FF7A0C;
     outline: none;
     text-align: right;
@@ -243,6 +244,7 @@ textarea:focus{
     cursor: pointer;
     transition: 0.3s;
     text-decoration: none;
+    list-style: none;
 }
 
 .submit:hover{
@@ -458,10 +460,18 @@ button:disabled {
 
 .modal-content {
     background: #F1F0F0;
+    height: auto;
     padding: 24px;
     max-width: 320px;
     border-radius: 32px;
     text-align: center;
+}
+
+.modal-content .loading{
+  display: flex;
+  box-sizing: border-box;
+  width: 180px;
+  height: 180px;
 }
 
 .checking{
@@ -785,8 +795,8 @@ button:disabled {
 .loader {
   color: #433B3B;
   font-size: 10px;
-  width: 1em;
-  height: 1em;
+  width: 0.5em;
+  height: 0.5em;
   border-radius: 50%;
   position: relative;
   text-indent: -9999em;

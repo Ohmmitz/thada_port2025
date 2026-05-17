@@ -8,11 +8,11 @@ let isSubmitting = false;
 // ================= CATEGORY =================
 const categoryMap = {
   income: ["INCO", "INOT", "FMGM" ,"BONU"],
-  food: ["COOK", "DINE", "CELE", "DRNK"],
-  utility: ["WATE", "ELEC", "YOUT", "NETX", "AISP" ,"FIBE"],
+  food: ["COOK", "DINE", "CELE", "DRNK" ,"COEQ" ,"SNAC"],
+  utility: ["WATE", "ELEC", "YOUT" ,"NETX", "AISP" ,"FIBE"],
   transport: ["BTST", "GRAB", "TAXI", "BUST", "CC10"],
-  personal: ["TSSP", "WDEQ", "ETCM" ,"COEQ" , "SKIN"],
-  self: ["WANT", "SAVE", "DEBT", "MFGM"]
+  personal: ["TSSP", "WDEQ", "ETCM" , "SKIN" ,"STAT"],
+  self: ["WANT", "SAVE", "DEBT", "MFGM" ,"DENT" , "PATI" , "MOVI"]
 };
 
 // ================= CODE CONFIG =================
@@ -44,6 +44,11 @@ const codeConfig = {
   SAVE: { type: "expense" },
   DEBT: { type: "expense" , item: "จ่ายหนี้", },
   MFGM: { type: "expense" },
+  DENT: { type: "expense",item: "ทำฟัน", from: "คลินิคทำฟัน Mister Smile", amount: "1", unit:"ครั้ง"},
+  PATI: { type: "expense"},
+  MOVI: { type: "expense"},
+  SNAC: { type: "expense"},
+  STAT: { type: "expense"},
 };
 
 // ================= UNIT MAP =================
