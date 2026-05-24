@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="Assets/app icon/icon_Finance.png">
+        <img src="Assets/app icon/icon_Finance.png" class="main">
         <h2>บันทึกรายรับ - รายจ่าย</h2>
         <h6>สำหรับบันทึกการใช้จ่ายในแต่ละวัน โดยรอบในแต่ละเดือนจะเริ่มจากวันที่ 25 ของเดือนก่อนหน้า ถึง วันที่ 24 แล้วมีการตัดรอบไปเดือนถัดไปวันที่ 25 เวลา 06:00 น. </h6>
         <br>
@@ -127,7 +127,9 @@
     </div>
     <div id="loadingModal" class="modal">
         <div class="modal-content loading">
-            <div class="loader"></div>
+            <div class="loading-circle">
+                <div class="spinner"></div>
+            </div>
             <p id="loadingText">กำลังบันทึกข้อมูล...</p>
         </div>
     </div>
