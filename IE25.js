@@ -10,9 +10,9 @@ const categoryMap = {
   income: ["INCO", "INOT", "FMGM" ,"BONU"],
   food: ["COOK", "DINE", "CELE", "DRNK" ,"COEQ" ,"SNAC"],
   utility: ["WATE", "ELEC", "YOUT" ,"NETX", "AISP" ,"FIBE"],
-  transport: ["BTST", "GRAB", "TAXI", "BUST", "CC10"],
-  personal: ["TSSP", "WDEQ", "ETCM" , "SKIN" ,"STAT"],
-  self: ["WANT", "SAVE", "DEBT", "MFGM" ,"DENT" , "PATI" , "MOVI"]
+  transport: ["BTST", "GRAB", "TAXI", "BUST", "CC10","PLAN","TRAI"],
+  personal: ["TSSP", "WDEQ", "ETCM" , "SKIN" ,"STAT","LOTE","CLOT","GADG"],
+  self: ["WANT", "SAVE", "DEBT", "MFGM" ,"DENT" , "PATI" , "MOVI" ,"HAIR"]
 };
 
 // ================= CODE CONFIG =================
@@ -49,6 +49,13 @@ const codeConfig = {
   MOVI: { type: "expense"},
   SNAC: { type: "expense"},
   STAT: { type: "expense"},
+  HAIR: { type: "expense", value: 200, item: "ตัดผม", from: "ร้าน Barber", amount: "1", unit:"ครั้ง"},
+  LOTE: { type: "expense", value: 80, item: "สลากกินแบ่งฯ", from: "เป๋าตัง", amount: "1", unit:"งวด"},
+  TRAI: { type: "expense"},
+  PLAN: { type: "expense"},
+  GADG: { type: "expense"},
+  CLOT: { type: "expense"},
+
 };
 
 // ================= UNIT MAP =================
