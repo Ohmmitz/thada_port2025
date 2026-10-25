@@ -7,26 +7,26 @@ let isSubmitting = false;
 
 // ================= CATEGORY =================
 const categoryMap = {
-  income: ["INCO", "INOT", "FMGM" ,"BONU"],
+  income: ["INCO", "INOT", "EMMR" ,"BONU"],
   food: ["COOK", "DINE", "CELE", "DRNK" ,"COEQ" ,"SNAC"],
-  utility: ["WATE", "ELEC", "YOUT" ,"NETX", "AISP" ,"FIBE"],
+  utility: ["WATE", "ELEC", "YOUT" ,"NETX", "AISP" ,"FIBE" ,"MUSI"],
   transport: ["BTST", "GRAB", "TAXI", "BUST", "CC10","PLAN","TRAI"],
   personal: ["TSSP", "WDEQ", "ETCM" , "SKIN" ,"STAT","LOTE","CLOT","GADG"],
-  self: ["WANT", "SAVE", "DEBT", "MFGM" ,"DENT" , "PATI" , "MOVI" ,"HAIR"]
+  self: ["CRED", "SAVE", "DEBT", "MFGM" ,"DENT" , "PATI" , "MOVI" ,"HAIR"]
 };
 
 // ================= CODE CONFIG =================
 const codeConfig = {
-  INCO: { type: "income", value: 11040, item: "เงินเดือน", from: "Remobie", amount: "1", unit:"เดือน"},
+  INCO: { type: "income", value: 16000, item: "เงินเดือน", from: "A VENTURE", amount: "1", unit:"เดือน"},
   INOT: { type: "income", item: "Incentive", from: "Remobie", amount: "1" , unit:"เดือน" },
-  FMGM: { type: "income" },
   BONU: { type: "income" },
+  EMMR: { type: "income" },
   COOK: { type: "expense" },
   DINE: { type: "expense" },
   CELE: { type: "expense" },
   WATE: { type: "expense", item: "จ่ายค่าน้ำ", from: "การประปานครหลวง (ผ่านนิติ)", amount: "1", unit:"งวด"},
-  ELEC: { type: "expense", item: "จ่ายค่าไฟ", from: "การไฟฟ้านครหลวง", amount: "1", unit:"งวด"},
-  YOUT: { type: "expense", value: 199, item: "จ่ายค่า Youtube premium", from: "Youtube", amount: "1", unit:"เดือน"},
+  ELEC: { type: "expense", value: 1000,item: "จ่ายค่าไฟ", from: "การไฟฟ้านครหลวง", amount: "1", unit:"งวด"},
+  YOUT: { type: "expense", value: 179, item: "จ่ายค่า Youtube premium", from: "Youtube", amount: "1", unit:"เดือน"},
   NETX: { type: "expense", value: 419, item: "จ่ายค่า Netflix", from: "Netflix", amount: "1", unit:"เดือน"},
   AISP: { type: "expense", value: 641, item: "จ่ายค่าเบอร์มือถือรายเดือน", from: "AIS", amount: "1", unit:"เดือน"},
   FIBE: { type: "expense", value: 535, item: "จ่ายเน็ตบ้านรายเดือน", from: "AIS", amount: "1", unit:"เดือน"},
@@ -40,7 +40,7 @@ const codeConfig = {
   ETCM: { type: "expense" },
   COEQ: { type: "expense" },
   SKIN: { type: "expense" },
-  WANT: { type: "expense" },
+  WANT: { type: "expense" , unit:"ชิ้น"},
   SAVE: { type: "expense" },
   DEBT: { type: "expense" , item: "จ่ายหนี้", },
   MFGM: { type: "expense" },
@@ -50,11 +50,13 @@ const codeConfig = {
   SNAC: { type: "expense"},
   STAT: { type: "expense"},
   HAIR: { type: "expense", value: 200, item: "ตัดผม", from: "ร้าน Barber", amount: "1", unit:"ครั้ง"},
-  LOTE: { type: "expense", value: 80, item: "สลากกินแบ่งฯ", from: "เป๋าตัง", amount: "1", unit:"งวด"},
+  LOTE: { type: "expense", value: 80, item: "สลากกินแบ่งฯ", from: "เป๋าตัง", amount: "1", unit:"ใบ"},
   TRAI: { type: "expense"},
   PLAN: { type: "expense"},
   GADG: { type: "expense"},
   CLOT: { type: "expense"},
+  MUSI: { type: "expense", value: 149, item: "จ่ายค่า Apple music", from: "Apple", amount: "1", unit:"งวด"},
+  CRED: { type: "expense", value: 80,item: "ค่าธรรมเนียมบัตรเดบิต", from: "KBANK", amount: "1", unit:"ปี"},
 
 };
 
@@ -187,7 +189,8 @@ const unitMap = {
     "บัญชี",
     "กองทุน",
     "หุ้น",
-    "เหรียญ"
+    "เหรียญ",
+    "ชิ้น"
   ]
 
 };
@@ -357,6 +360,7 @@ function submitData() {
   const type = getTypeFromCode(selectedCode);
 
   tempData = {
+    id: generateTransactionID(),
     code: selectedCode,
     type,
     value,
@@ -375,6 +379,8 @@ function submitData() {
 
 // ================= SUMMARY =================
 function showSummary() {
+
+  document.getElementById("summaryID").innerText = tempData.id;
 
   document.getElementById(
     "summaryType"
@@ -598,6 +604,25 @@ function animateValue(input, from, to, duration = 400) {
 
 function getRawNumber(value) {
   return Number(value.replace(/\D/g, "")) || 0;
+}
+
+// ================= TRANSACTION ID =================
+
+function generateTransactionID() {
+    const now = new Date();
+
+    const date = [
+        now.getFullYear(),
+        String(now.getMonth() + 1).padStart(2, "0"),
+        String(now.getDate()).padStart(2, "0")
+    ].join("");
+
+    const randomID = Math.random()
+        .toString(36)
+        .substring(2, 8)
+        .toUpperCase();
+
+    return `IE-${date}-${randomID}`;
 }
 
 

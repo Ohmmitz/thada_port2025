@@ -94,20 +94,49 @@ async function loadHistory() {
 
     calculateSummary(data);
 
-    hideLoading();
+    calculateBalanceSummary(data);
 
     calculateCategorySummary(data);
 
   } catch (err) {
 
-    console.error(err);
+    console.error("โหลดประวัติไม่สำเร็จ:", err);
 
   } finally {
 
+    hideLoading();
 
   }
 
 }
+
+// ================= BALANCE SUMMARY =================
+function calculateBalanceSummary(data) {
+
+  const { start, end } = getBillingRange();
+
+  let totalIncome = 0;
+  let totalExpense = 0;
+
+  data.forEach(row => {
+
+    const d = parseDate(row.timestamp || row.Timestamp);
+
+    if (!d || d < start || d > end) return;
+
+    const value = Number(row.value) || 0;
+
+    if (row.type === "income") {
+      totalIncome += value;
+    } else {
+      totalExpense += value;
+    }
+
+  });
+
+  updateBalanceChart(totalIncome, totalExpense);
+}
+
 
 // ================= TIMELINE =================
 function renderTimeline(data) {
@@ -618,57 +647,6 @@ function renderCategorySummary(totals) {
 
     `
   ).join("");
-
-  // ================= PIE CHART =================
-  const ctx =
-    document
-      .getElementById("categoryChart");
-
-  if (!ctx) return;
-
-  if (categoryChart) {
-    categoryChart.destroy();
-  }
-
-  categoryChart = new Chart(ctx, {
-
-    type: "pie",
-
-    data: {
-
-      labels: sorted.map(
-        ([key]) => labels[key]
-      ),
-
-      datasets: [{
-        data: sorted.map(
-          ([_, value]) => value
-        ),
-
-        backgroundColor: sorted.map(
-          ([key]) => colors[key]
-        ),
-
-        borderWidth: 0
-      }]
-    },
-
-    options: {
-
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: "72%",
-
-      plugins: {
-        legend: {
-          display: false
-        }
-      }
-
-    }
-
-  });
-
 }
 
 // ================= ANIMATION =================
@@ -751,18 +729,18 @@ function getBillingRange() {
 
   let start, end;
 
-  if (now.getDate() >= 25) {
+  if (now.getDate() >= 27) {
 
     start = new Date(
       now.getFullYear(),
       now.getMonth(),
-      25
+      27
     );
 
     end = new Date(
       now.getFullYear(),
       now.getMonth() + 1,
-      24,
+      27,
       23,
       59,
       59
@@ -773,13 +751,13 @@ function getBillingRange() {
     start = new Date(
       now.getFullYear(),
       now.getMonth() - 1,
-      25
+      27
     );
 
     end = new Date(
       now.getFullYear(),
       now.getMonth(),
-      24,
+      27,
       23,
       59,
       59
@@ -809,10 +787,98 @@ function renderBillingRange() {
 
   if (el) {
     el.innerText =
-      "รอบบัญชี: " + text;
+      "รอบวันที่: " + text;
   }
 
 }
+
+// ================= BALANCE DONUT CHART =================
+function updateBalanceChart(income, expense) {
+
+  const totalIncome = Number(income) || 0;
+  const totalExpense = Number(expense) || 0;
+  const remaining = totalIncome - totalExpense;
+
+  const formatMoney = value =>
+    value.toLocaleString("th-TH", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+  // แสดงเงินคงเหลือ
+  const remainingEl = document.getElementById("remainingBalance");
+
+  if (remainingEl) {
+    remainingEl.textContent = formatMoney(remaining);
+    remainingEl.classList.toggle("negative", remaining < 0);
+  }
+
+  // แสดงรายรับและรายจ่าย
+  const incomeEl = document.getElementById("totalIncome");
+  const expenseEl = document.getElementById("totalExpense");
+
+  if (incomeEl) {
+    incomeEl.textContent = `${formatMoney(totalIncome)} บาท`;
+  }
+
+  if (expenseEl) {
+    expenseEl.textContent = `${formatMoney(totalExpense)} บาท`;
+  }
+
+  // เตรียมข้อมูลสำหรับ Donut Chart
+  const remainingForChart = Math.max(remaining, 0);
+  const expenseForChart = Math.max(totalExpense, 0);
+
+  const canvas = document.getElementById("categoryChart");
+
+  if (!canvas || typeof Chart === "undefined") {
+    console.error("ไม่พบ categoryChart หรือ Chart.js");
+    return;
+  }
+
+  // ลบกราฟเดิมก่อนสร้างใหม่
+  if (categoryChart) {
+    categoryChart.destroy();
+  }
+
+  categoryChart = new Chart(canvas, {
+    type: "doughnut",
+
+    data: {
+      labels: ["เงินคงเหลือ", "รายจ่าย"],
+
+      datasets: [{
+        data: [remainingForChart, expenseForChart],
+        backgroundColor: ["#22c55e", "#f97316"],
+        borderWidth: 0,
+        hoverOffset: 4
+      }]
+    },
+
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: "78%",
+
+      plugins: {
+        legend: {
+          display: false
+        },
+
+        tooltip: {
+          enabled: true,
+
+          callbacks: {
+            label: function(context) {
+              return `${context.label}: ${formatMoney(Number(context.raw) || 0)} บาท`;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
 
 // ================= NAV =================
 function goBack() {

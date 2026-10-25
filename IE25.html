@@ -12,7 +12,9 @@
     <div class="container">
         <img src="Assets/app icon/icon_Finance.png" class="main">
         <h2>บันทึกรายรับ - รายจ่าย</h2>
-        <h6>สำหรับบันทึกการใช้จ่ายในแต่ละวัน โดยรอบในแต่ละเดือนจะเริ่มจากวันที่ 25 ของเดือนก่อนหน้า ถึง วันที่ 24 แล้วมีการตัดรอบไปเดือนถัดไปวันที่ 25 เวลา 06:00 น. </h6>
+        <h4>Version 2.0</h4>
+        <br>
+        <h6>สำหรับบันทึกการใช้จ่ายในแต่ละวัน ตั้งแต่รายรับ-รายจ่าย รวมถึงสรุปค่าใช้จ่ายทั้งเดือน โดยสรุปรอบในแต่ละเดือนจะเริ่มจากวันที่ 27 ของทุกเดือนก่อนหน้า ถึง วันที่ 26 ขแงทุกเดือน แล้วมีการตัดรอบไปเดือนถัดไปวันที่ 27 ของทุกเดือน เวลา 06:00 น. </h6>
         <br>
         <h5>หมวดหมู่ค่าใช้จ่าย</h5>
         <div class="category-group">
@@ -25,10 +27,10 @@
         </div>
         <div class="tag-group" id="code" style="display:none;">
             <button class="tag" data-value="INCO"><img src="Assets/app icon/icon_cash.png"><p>เงินเดือน</p></button>
-            <button class="tag" data-value="INOT"><img src="Assets/app icon/icon_OT.png"><p>Incentive</p></button>
-            <button class="tag" data-value="FMGM"><img src="Assets/app icon/icon_borrow.png"><p>ขอพ่อแม่</p></button>
-            <button class="tag" data-value="BONU"><img src="Assets/app icon/icon_income.png"><p>ได้เงินเพิ่ม</p></button>
-            <button class="tag" data-value="COOK"><img src="Assets/app icon/icon_cook.png"><p>วัตถุดิบ</p></button>
+            <button class="tag" data-value="INOT"><img src="Assets/app icon/icon_OT.png"><p>ค่าทำงานล่วงเวลา</p></button>
+            <button class="tag" data-value="BONU"><img src="Assets/app icon/icon_income.png"><p>ค่าคอมมิสชั่น</p></button>
+            <button class="tag" data-value="EMMR"><img src="Assets/app icon/icon_borrow.png"><p>เงินเบิกฉุกเฉิน</p></button>
+            <button class="tag" data-value="COOK"><img src="Assets/app icon/icon_cook.png"><p>ค่าวัตถุดิบ</p></button>
             <button class="tag" data-value="DINE"><img src="Assets/app icon/icon_dine.png"><p>ซื้อกินเอง</p></button>
             <button class="tag" data-value="DRNK"><img src="Assets/app icon/icon_Energy Drink.png"><p>เครื่องดื่ม</p></button>
             <button class="tag" data-value="CELE"><img src="Assets/app icon/icon_shabu.png"><p>กินเลี้ยง</p></button>
@@ -51,9 +53,10 @@
             <button class="tag" data-value="WANT"><img src="Assets/app icon/icon_want.png"><p>สิ่งที่ต้องการ</p></button>
             <button class="tag" data-value="SAVE"><img src="Assets/app icon/icon_save.png"><p>เงินออม/ลงทุน</p></button>
             <button class="tag" data-value="DEBT"><img src="Assets/app icon/icon_debt.png"><p>จ่ายหนี้</p></button>
+            <button class="tag" data-value="CRED"><img src="Assets/app icon/icon_credit.png"><p>บัตรเดบิต</p></button>
             <button class="tag" data-value="MFGM"><img src="Assets/app icon/icon_give.png"><p>ส่งเงินให้พ่อแม่</p></button>
             <button class="tag" data-value="DENT"><img src="Assets/app icon/icon_dentist.png"><p>ทำฟัน</p></button>
-            <button class="tag" data-value="PATI"><img src="Assets/app icon/icon_patient.png"><p>รักษาพยาบาล</p></button>
+            <button class="tag" data-value="PATI"><img src="Assets/app icon/icon_patient.png"><p>ค่าสุขภาพ</p></button>
             <button class="tag" data-value="STAT"><img src="Assets/app icon/icon_stationary.png"><p>เครื่องเขียน</p></button>
             <button class="tag" data-value="SNAC"><img src="Assets/app icon/icon_snack.png"><p>ขนมขบเคี้ยว</p></button>
             <button class="tag" data-value="MOVI"><img src="Assets/app icon/icon_movie.png"><p>ดูหนัง</p></button>
@@ -63,6 +66,7 @@
             <button class="tag" data-value="PLAN"><img src="Assets/app icon/icon_plane.png"><p>เครื่องบิน</p></button>
             <button class="tag" data-value="CLOT"><img src="Assets/app icon/icon_clothes.png"><p>เสื้อผ้า</p></button>
             <button class="tag" data-value="GADG"><img src="Assets/app icon/icon_gadget.png"><p>แกดเจ็ด</p></button>
+            <button class="tag" data-value="MUSI"><img src="Assets/app icon/icon_music.png"><p>Apple music</p></button>
         </div>
         <h5>จำนวนเงิน</h5>
         <div class="money-field"> 
@@ -95,8 +99,14 @@
     <div id="confirmModal" class="modal">
         <div class="modal-content checking">
             <img src="Assets/app icon/icon_order.png" class="icon_img"><br>
-            <h3>ตรวจสอบข้อมูล</h3>
-            <p>ก่อนยืนยันส่งข้อมูลเข้าระบบ</p>
+            <h3>ใบเสร็จรายการค่าใช้จ่าย</h3>
+            <p>ตรวจสอบข้อมูลก่อนยืนยันส่งข้อมูลเข้าระบบ</p>
+            <div class="receipt-id">
+                <div class="receipt-id-info">
+                    <span class="receipt-id-label">TRANSACTION ID</span>
+                    <span id="summaryID">-</span>
+                </div>
+            </div>
             <div class="summary-box">
                 <div class="summary-row">
                     <span>ประเภทรายการ</span>
@@ -127,9 +137,8 @@
     </div>
     <div id="loadingModal" class="modal">
         <div class="modal-content loading">
-            <div class="loading-circle">
-                <div class="spinner"></div>
-            </div>
+            <div class="spinner"></div>
+            <br>
             <p id="loadingText">กำลังบันทึกข้อมูล...</p>
         </div>
     </div>

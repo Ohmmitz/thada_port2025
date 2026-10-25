@@ -10,95 +10,189 @@
 </head>
 <body>
     <div class="container">
-        <div class="history-box">
-            <div class="history-header">
+        <main class="history-box">
+        <!-- Header -->
+        <header class="history-header">
+            <div class="history-heading">
+                <h3>ประวัติรายรับ-รายจ่าย</h3>
+                <div id="billingRange"></div>
+            </div>
+
+            <!-- Budget Warning -->
+            <div class="warning-box hidden" id="budgetWarning">
+                <div class="warning-icon" id="warningIcon">
+                    ⚠️
+                </div>
+
+                <div class="warning-content">
+                    <h5 id="warningTitle">ระวังค่าใช้จ่าย</h5>
+                    <p id="warningText">
+                        คุณกำลังใช้จ่ายใกล้เกินงบประมาณแล้ว
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Budget Loading -->
+        <section
+            class="budget-box skeleton-card"
+            id="budgetSkeleton"
+            aria-label="กำลังโหลดข้อมูลงบประมาณ"
+        >
+            <div class="skeleton skeleton-title"></div>
+            <div class="skeleton skeleton-bar"></div>
+            <div class="skeleton skeleton-text"></div>
+            <div class="skeleton skeleton-text short"></div>
+        </section>
+
+        <!-- Monthly Budget -->
+        <section class="budget-box hidden" id="budgetContent">
+            <div class="budget-header">
+                <span>งบประมาณเดือนนี้</span>
+                <span id="budgetPercent">ใช้ไป 0%</span>
+            </div>
+
+            <div
+                class="budget-bar"
+                role="progressbar"
+                aria-label="สัดส่วนการใช้จ่าย"
+                aria-valuemin="0"
+                aria-valuemax="100"
+            >
+                <div id="budgetProgress"></div>
+            </div>
+
+            <div class="budget-detail">
+
+                <!-- Income -->
                 <div>
-                    <h3>ประวัติค่าใช้จ่าย</h3>
-                    <div id="billingRange"></div>
-                </div>
-                <div class="warning-box hidden" id="budgetWarning">
-                    <div class="warning-icon" id="warningIcon">
-                        ⚠️
+                    <div class="budget-label">
+                        <i class="ph-bold ph-hand-coins"></i>
+                        <p>รายรับทั้งหมด</p>
                     </div>
-                    <div class="warning-content">
-                        <h5 id="warningTitle">ระวังค่าใช้จ่าย</h5>
-                        <p id="warningText">คุณกำลังใช้จ่ายใกล้เกินงบประมาณแล้ว</p>
-                    </div>
+
+                    <b id="budgetTotal">0</b>
+                    <p>บาท</p>
                 </div>
+
+                <!-- Expenses -->
+                <div>
+                    <div class="budget-label">
+                        <i class="ph-bold ph-shopping-cart-simple"></i>
+                        <p>รายจ่ายเดือนนี้</p>
+                    </div>
+
+                    <b id="budgetUsed">0</b>
+                    <p>บาท</p>
+                </div>
+
+                <!-- Remaining Balance -->
+                <div>
+                    <div class="budget-label">
+                        <i class="ph-bold ph-piggy-bank"></i>
+                        <p>เงินคงเหลือ</p>
+                    </div>
+
+                    <b id="sumBalance">0</b>
+                    <p>บาท</p>
+                </div>
+
             </div>
-            <div class="budget-box skeleton-card" id="budgetSkeleton">
-                <div class="skeleton skeleton-title"></div>
-                <div class="skeleton skeleton-bar"></div>
-                <div class="skeleton skeleton-text"></div>
-                <div class="skeleton skeleton-text short"></div>
-            </div>
-            <div class="budget-box hidden" id="budgetContent">
-                <div class="budget-header">
-                    <span>งบประมาณเดือนนี้</span>
-                    <span id="budgetPercent">ใช้ไป 0%</span>
-                </div>
-                <div class="budget-bar">
-                    <div id="budgetProgress"></div>
-                </div>
-                <div class="budget-detail">
-                    <div>
-                        <div style="display: flex;">
-                            <i class="ph-bold ph-shopping-cart-simple"></i>&nbsp;
-                            <p>เดือนนี้ใช้ไป</p>
-                        </div>
-                        <b id="budgetUsed">0</b>
-                        <p>บาท</p>
-                    </div>
-                    <div>
-                        <div style="display: flex;">
-                            <i class="ph-bold ph-hand-coins"></i>&nbsp;
-                            <p>จากรายรับ</p>
-                        </div>
-                        <b id="budgetTotal">0</b>
-                        <p>บาท</p>
-                    </div>
-                    <div>
-                        <div style="display: flex;">
-                            <i class="ph-bold ph-piggy-bank"></i>&nbsp;
-                            <p>มีเงินคงเหลือ</p>
-                        </div>
-                        <b id="sumBalance">0</b>
-                        <p>บาท</p>
-                    </div>
-                </div>
-            </div>
-            <div class="category-summary">
-                <div id="pieSkeleton">
-                    <div class="skeleton skeleton-circle"></div>
-                    <div class="skeleton-list">
-                    <div class="skeleton skeleton-item"></div>
-                    <div class="skeleton skeleton-item"></div>
-                    <div class="skeleton skeleton-item"></div>
-                    <div class="skeleton skeleton-item"></div>
-                    </div>
-                </div>
-                <div id="pieContent" class="hidden">
-                    <div class="container">
-                        <div class="chart-wrapper">
-                            <canvas id="categoryChart"></canvas>
-                        </div>
-                    </div>
-                    <div id="categoryList"></div>
-                </div>
-            </div>
-            <div class="space-between">
-                <h4>รายการล่าสุด</h4>
-                <button id="loadMoreBtn" class="load-more"><i class="ph-bold ph-list-plus"></i></button>
-            </div>
-            <div id="loadingBar"></div>
-            <div id="historyList"></div>
-            <div class="modal-actions">
-                <button onclick="goBack()" id="back"><i class="ph-bold ph-arrow-left"></i>&nbsp;&nbsp;กลับหน้าแรก</button>
-                <button id="refreshBtn"><i class="ph-bold ph-arrow-clockwise"></i>&nbsp;&nbsp;อัพเดตใหม่</button>
-            </div>
+        </section>
+
+        <!-- Remaining Balance Summary -->
+        <div class="category-summary">
+
+    <!-- Loading -->
+    <div id="pieSkeleton">
+        <div class="skeleton skeleton-circle"></div>
+        <div class="skeleton-list">
+            <div class="skeleton skeleton-item"></div>
+            <div class="skeleton skeleton-item"></div>
+            <div class="skeleton skeleton-item"></div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="IE_History.js"></script>
+
+    <!-- Balance Donut Chart -->
+    <div id="pieContent" class="hidden">
+
+        <div class="balance-chart-container">
+
+            <div class="balance-chart-wrapper">
+                <canvas id="categoryChart"></canvas>
+
+                <div class="balance-chart-center">
+                    <span class="balance-label">เงินคงเหลือ</span>
+                    <h2 id="remainingBalance">0.00</h2>
+                    <span class="balance-unit">บาท</span>
+                </div>
+            </div>
+
+            <div class="balance-details">
+
+                <div class="balance-item">
+                    <span>
+                        <span class="balance-dot income-dot"></span>
+                        รายรับทั้งหมด
+                    </span>
+                    <strong id="totalIncome">0.00 บาท</strong>
+                </div>
+
+                <div class="balance-item">
+                    <span>
+                        <span class="balance-dot expense-dot"></span>
+                        รายจ่ายทั้งหมด
+                    </span>
+                    <strong id="totalExpense">0.00 บาท</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+        <!-- Recent Transactions -->
+        <section class="history-transactions">
+
+            <div class="space-between">
+                <h4>รายการล่าสุด</h4>
+
+                <button
+                    type="button"
+                    id="loadMoreBtn"
+                    class="load-more"
+                    aria-label="โหลดรายการเพิ่มเติม"
+                    title="โหลดรายการเพิ่มเติม"
+                >
+                    <i class="ph-bold ph-list-plus"></i>
+                </button>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loadingBar"></div>
+
+            <!-- Transaction List -->
+            <div id="historyList"></div>
+
+        </section>
+
+        <!-- Footer Actions -->
+        <footer class="modal-actions">
+            <button type="button" onclick="goBack()" id="back">
+                <i class="ph-bold ph-arrow-left"></i>
+                &nbsp;&nbsp;กลับหน้าแรก
+            </button>
+
+            <button type="button" id="refreshBtn">
+                <i class="ph-bold ph-arrow-clockwise"></i>
+                &nbsp;&nbsp;อัปเดตข้อมูล
+            </button>
+        </footer>
+    </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="IE_History.js"></script>
 </body>
 </html>
